@@ -1,1 +1,1 @@
-# lichen_care_cpstnprj-1.0
+# lichen-care-cpstnprj-1.0
