@@ -1308,6 +1308,7 @@ class _LichenHubState extends State<LichenHub> {
     fireStoreListener?.cancel();
   }
 
+  // MAIN widget
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
