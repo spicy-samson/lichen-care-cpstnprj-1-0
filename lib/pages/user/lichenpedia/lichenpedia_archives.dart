@@ -35,7 +35,7 @@ class _LichenPediaArchiveState extends State<LichenPediaArchive> {
       ),
 
       // Body
-      body: Container(
+      body: SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
@@ -55,7 +55,7 @@ class _LichenPediaArchiveState extends State<LichenPediaArchive> {
                   );
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
+                  padding: const EdgeInsets.only(left: 5.0, right: 5.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -217,10 +217,11 @@ class _LichenPediaArchiveState extends State<LichenPediaArchive> {
               GestureDetector(
                 onTap: () {
                   launchUrlString(
-                      'https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1600-0714.2010.00946.x');
+                    'https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1600-0714.2010.00946.x',
+                  );
                 },
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 5.0),
+                  padding: const EdgeInsets.only(left: 5.0, right: 5.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -230,7 +231,9 @@ class _LichenPediaArchiveState extends State<LichenPediaArchive> {
                         height: 100,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 10.0),
+                        padding: const EdgeInsets.only(
+                          left: 10.0,
+                        ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -306,7 +309,58 @@ class _LichenPediaArchiveState extends State<LichenPediaArchive> {
                   ),
                 ),
               ),
-              const Spacer(),
+              const SizedBox(height: 15),
+              GestureDetector(
+                onTap: () {
+                  launchUrlString(
+                    'https://www.lichensclerosus.ch/custom/data/ckeditorfiles/Lichen_Planus/LichenplanusUpToDate.pdf',
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SvgPicture.asset(
+                        'assets/svgs/researchbook_icon.svg',
+                        width: 150,
+                        height: 100,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Lichen Planus',
+                              style: TextStyle(
+                                fontSize: 18 * scaleFactor,
+                                fontWeight: FontWeight.w300,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                            Text(
+                              'Authors: Beth G Goldstein, MD, Adam O Golds...',
+                              style: TextStyle(
+                                fontSize: 18 * scaleFactor,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                            Text(
+                              'Journal of Oral... The various hypothesis',
+                              style: TextStyle(
+                                fontSize: 18 * scaleFactor,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 15),
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();

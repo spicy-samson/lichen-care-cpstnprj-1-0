@@ -8,6 +8,9 @@ class LichenPedia extends StatefulWidget {
   _LichenPediaState createState() => _LichenPediaState();
 }
 
+Color primaryforegroundColor = const Color(0xFFFF7F50);
+Color secondaryForegroundColor = const Color(0xFF66D7D1);
+
 class _LichenPediaState extends State<LichenPedia> {
   final int _currentIndex = 1;
   int currentSection = 0;
@@ -120,26 +123,36 @@ class _LichenPediaState extends State<LichenPedia> {
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.only(top: 0.0, left: 15*scaleFactor, right:15*scaleFactor,),
+                          padding: EdgeInsets.only(
+                            top: 0.0,
+                            left: 15 * scaleFactor,
+                            right: 15 * scaleFactor,
+                          ),
                           child: Column(
                             children: [
                               Flexible(
-                                child: listViewCategory("Overview of Lichen Planus I"),
+                                child: listViewCategory(
+                                    "Overview of Lichen Planus I"),
                               ),
                               Flexible(
-                                child: listViewCategory("Photos of Lichen Planus"),
+                                child:
+                                    listViewCategory("Photos of Lichen Planus"),
                               ),
                               Flexible(
-                                child: listViewCategory("Causes of Lichen Planus I"),
+                                child: listViewCategory(
+                                    "Causes of Lichen Planus I"),
                               ),
                               Flexible(
-                                child: listViewCategory("Symptoms of Lichen Planus I"),
+                                child: listViewCategory(
+                                    "Symptoms of Lichen Planus I"),
                               ),
                               Flexible(
-                                child: listViewCategory("Treatments of Lichen Planus I"),
+                                child: listViewCategory(
+                                    "Treatments of Lichen Planus I"),
                               ),
                               Flexible(
-                                child: listViewCategory("Diagnosis of Lichen Planus I"),
+                                child: listViewCategory(
+                                    "Diagnosis of Lichen Planus I"),
                               )
                             ],
                           ),
@@ -192,7 +205,8 @@ class _LichenPediaState extends State<LichenPedia> {
                           IconButton(
                             onPressed: () {
                               currentSection += 1;
-                              _onArrowDownPressed(scrollKeys["Overview of Lichen Planus I"]!);
+                              _onArrowDownPressed(
+                                  scrollKeys["Overview of Lichen Planus I"]!);
                             },
                             icon: const Icon(Icons.keyboard_arrow_down,
                                 color: Color(0xFFFF7F50)),
@@ -205,431 +219,435 @@ class _LichenPediaState extends State<LichenPedia> {
                     ),
                   ]),
                 ),
-                snappingSlider(key: 'Overview of Lichen Planus I', previousKey: 'Table of Contents', nextKey: 'Overview of Lichen Planus II', scaleFactor: scaleFactor,  
-                  bodyWidget: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                            padding: EdgeInsets.only(
-                                left: 35.0 * scaleFactor,
-                                right: 35 * scaleFactor),
-                            child: richText('What is Lichen Planus?',
-                                fontSize: 22 * scaleFactor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle: FontStyle.italic)),
-                      ),
-                      SizedBox(height: 20 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                            'The term Lichen Planus (LP) or pronounced as (like-en play-nes) stems from the Greek word “leichen”, which means “tree moss”, and the Latin word “planus”, which means “flat”, which aptly describes the surface of the cutaneous lesion. Lichen Planus is an uncommon skin disorder that presents as an itchy rash that appears as flat-topped, itchy, purple-colored bumps of the skin. While LP is a non-contagious skin disease, it can affect any part of the body of the person with it and is most commonly found on the wrists, ankles, lower back, and mouth. LP belongs to a group of chronic inflammatory skin conditions with characteristic clinical and histopathologic findings, ranging from common to rare called lichenoid dermatoses. Commonly, the LP presents many variants in morphology and location also exist.',
-                            fontSize: 20 * scaleFactor,
-                          ),
+                snappingSlider(
+                    key: 'Overview of Lichen Planus I',
+                    previousKey: 'Table of Contents',
+                    nextKey: 'Overview of Lichen Planus II',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35.0 * scaleFactor,
+                                  right: 35 * scaleFactor),
+                              child: richText('What is Lichen Planus?',
+                                  fontSize: 22 * scaleFactor,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic)),
                         ),
-                      ),
-                     
-                     
-                    ],
-                  )
-                ),
-                snappingSlider(key: 'Overview of Lichen Planus II', previousKey: 'Overview of Lichen Planus I', nextKey: 'Overview of Lichen Planus III', scaleFactor: scaleFactor,  
-                  bodyWidget: Column(
-                    children: [
-                       Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                            'Other lichenoid dermatoses share similar clinical presentations and histopathologic findings. These include lichenoid drug eruption, lichen planus-like keratosis, lichen striatus, lichen nitidus, and keratosis lichenoides chronica. ',
-                            fontSize: 20 * scaleFactor,
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                            'Epidemiologic characteristics vary among each lichenoid disorder. While classic lichen planus is considered a disease of adults, other lichenoid dermatoses may be more common in younger populations. ',
-                            fontSize: 20 * scaleFactor,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
+                        SizedBox(height: 20 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
                             padding: EdgeInsets.only(
                                 left: 35.0 * scaleFactor,
                                 right: 35 * scaleFactor),
                             child: richText(
-                                'How common is Lichen Planus and who does it affect?',
-                                fontSize: 22 * scaleFactor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle: FontStyle.italic)),
-                      ),
-                      SizedBox(height: 20 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                            'According to an article published by Dr. Jacqueline Chen (2023), a doctor from Kaiser Sunnyside Medical Center, she stated that LP affects approximately 0.22% to 1% of the adult population worldwide, mostly affecting adults aged between 30 to 60 years. Thus, it has no strong racial predilection. Approximately 10% of those affected have lichen planus of the nails while half of those affected have oral lichen planus, which is more common in women than in men.',
-                            fontSize: 20 * scaleFactor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ),
-                snappingSlider(key: 'Overview of Lichen Planus III', previousKey: 'Overview of Lichen Planus II', nextKey: 'Photos of Lichen Planus', scaleFactor: scaleFactor,  
-                  bodyWidget: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                            'Some studies suggest women might get lichen planus twice as often as men, and they’re more likely to develop it in their 60s. Men are more likely to develop it in their 40s.',
-                            fontSize: 20 * scaleFactor,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                            padding: EdgeInsets.only(
-                                left: 35.0 * scaleFactor,
-                                right: 35 * scaleFactor),
-                            child: richText(
-                                'Is Lichen Planus an autoimmune disease?',
-                                fontSize: 22 * scaleFactor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle: FontStyle.italic)),
-                      ),
-                      SizedBox(height: 20 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                            'Some studies suggest that Lichen Planus isn’t an autoimmune condition, yet it can cause a similar response. It is an unknown condition that causes inflammation in your skin.  In lichen planus, your body’s immune system attacks parts of your body instead of protecting your body from foreign invaders like bacteria or viruses. In a healthy immune system, special cells called T cells help protect your body from infection. However, in people with LP, their immune system’s T cells attack an unknown protein within the skin and mucous keratinocytes. While the reason for the T cells’ attack is still unknown, further studies are still needed to be done to understand the anomaly.',
-                            fontSize: 20 * scaleFactor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ),
-                snappingSlider(key: 'Photos of Lichen Planus', previousKey: 'Overview of Lichen Planus III', nextKey: 'Causes of Lichen Planus I', scaleFactor: scaleFactor, 
-                  bodyWidget: Column(
-                    children: [
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                          child: Text(
-                            'How does Lichen Planus affect my body?',
-                            style: TextStyle(
-                                fontSize: 22 * scaleFactor,
-                                fontWeight: FontWeight.w900,
-                                fontStyle: FontStyle.italic),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 15 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                          child: Column(
-                            children: [
-                              richText(
-                                'Lichen Planus commonly affects the skin around a person’s wrists and elbows (flexor surfaces), the back of your hands (dorsal surfaces), and the fronts of your lower legs. About half of all people who have lichen planus develop oral lichen planus, which affects the skin inside of your mouth and your tongue. The lesions on the body of a person with lichen planus usually start as tiny, raised dots (papules) that are about the size of the tip of a pin (0.4 millimeters [mm]). They may grow up to the width of a pencil (1 centimeter [cm]).',
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10 * scaleFactor),
-                      const Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 35.0),
-                          child: Text(
-                            'Photos',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w900,
+                              'The term Lichen Planus (LP) or pronounced as (like-en play-nes) stems from the Greek word “leichen”, which means “tree moss”, and the Latin word “planus”, which means “flat”, which aptly describes the surface of the cutaneous lesion. Lichen Planus is an uncommon skin disorder that presents as an itchy rash that appears as flat-topped, itchy, purple-colored bumps of the skin. While LP is a non-contagious skin disease, it can affect any part of the body of the person with it and is most commonly found on the wrists, ankles, lower back, and mouth. LP belongs to a group of chronic inflammatory skin conditions with characteristic clinical and histopathologic findings, ranging from common to rare called lichenoid dermatoses. Commonly, the LP presents many variants in morphology and location also exist.',
+                              fontSize: 20 * scaleFactor,
                             ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 5 * scaleFactor),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: CarouselSlider(
-                          options: CarouselOptions(
-                            height: 200 * scaleFactor,
-                            enlargeCenterPage: true,
-                            enableInfiniteScroll: true,
-                            autoPlay: true,
-                            autoPlayInterval: Duration(seconds: 3),
-                            autoPlayAnimationDuration:
-                                Duration(milliseconds: 800),
-                            autoPlayCurve: Curves.fastOutSlowIn,
-                            scrollDirection: Axis.horizontal,
-                          ),
-                          items: [
-                            [
-                              'assets/imgs/lichenpedia_image1.png',
-                              'assets/imgs/lichenpedia_image2.png'
-                            ],
-                            [
-                              'assets/imgs/mucosal1.png',
-                              'assets/imgs/mucosal2.png'
-                            ],
-                            ['assets/imgs/plano1.png', 'assets/imgs/plano2.png'],
-                            [
-                              'assets/imgs/pigmen1.png',
-                              'assets/imgs/pigmen2.png'
-                            ],
-                            ['assets/imgs/nails1.png', 'assets/imgs/nails2.png'],
-                          ].map((itemList) {
-                            return Builder(
-                              builder: (BuildContext context) {
-                                return Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: itemList.map((item) {
-                                    return SizedBox(
-                                      width: 190 * scaleFactor,
-                                      child: Image.asset(
-                                        item,
-                                        fit: BoxFit.cover,
-                                      ),
-                                    );
-                                  }).toList(),
-                                );
-                              },
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      SizedBox(height: 5 * scaleFactor),
-                    ],
-                  )
-                ),
-                snappingSlider(key: 'Causes of Lichen Planus I', previousKey: 'Photos of Lichen Planus', nextKey: 'Causes of Lichen Planus II', scaleFactor: scaleFactor, 
-                  bodyWidget: Column(
-                    children: [
-                       Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: Text(
-                            'Causes of Lichen Planus',
-                            style: TextStyle(
-                                fontSize: 24 * scaleFactor,
-                                fontWeight: FontWeight.w900),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 15 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                            'The exact cause of Lichen Planus is not known, but the following are the possible causes that can contribute to the occurrence of the skin condition:',
-                            fontSize: 20 * scaleFactor,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
+                      ],
+                    )),
+                snappingSlider(
+                    key: 'Overview of Lichen Planus II',
+                    previousKey: 'Overview of Lichen Planus I',
+                    nextKey: 'Overview of Lichen Planus III',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
                             padding: EdgeInsets.only(
                                 left: 35.0 * scaleFactor,
                                 right: 35 * scaleFactor),
-                            child: richText('Systemic Viral Infection',
-                                fontSize: 21 * scaleFactor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle: FontStyle.italic)),
-                      ),
-                      SizedBox(height: 10 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                            'While having Hepatitis C is not fully associated with having Lichen Planus, some studies have been done to understand the exact mechanism and the relationship between the two conditions. Hepatitis C infection can lead to immune system dysregulation where it becomes overactive resulting in various autoimmune reactions modifying self-antigens on the surface of basal keratinocytes.',
-                            fontSize: 20 * scaleFactor,
+                            child: richText(
+                              'Other lichenoid dermatoses share similar clinical presentations and histopathologic findings. These include lichenoid drug eruption, lichen planus-like keratosis, lichen striatus, lichen nitidus, and keratosis lichenoides chronica. ',
+                              fontSize: 20 * scaleFactor,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 10 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
                             padding: EdgeInsets.only(
                                 left: 35.0 * scaleFactor,
                                 right: 35 * scaleFactor),
-                            child: richText("Genetic Predisposition",
-                                fontSize: 21 * scaleFactor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle: FontStyle.italic)),
-                      ),
-                      SizedBox(height: 10 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                            'A person’s genetic makeup can be a possible reason, as it can sometimes run in families because certain genetic factors may make individuals more susceptible to developing the skin condition.',
-                            fontSize: 20 * scaleFactor,
+                            child: richText(
+                              'While classic lichen planus is considered a disease of adults, other lichenoid dermatoses may be more common in younger populations. ',
+                              fontSize: 20 * scaleFactor,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                ),
-                snappingSlider(key: 'Causes of Lichen Planus II', previousKey: 'Causes of Lichen Planus I', nextKey: 'Symptoms of Lichen Planus I', scaleFactor: scaleFactor, 
-                  bodyWidget: Column(
-                    children: [
-                       Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
+                        SizedBox(height: 20 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35.0 * scaleFactor,
+                                  right: 35 * scaleFactor),
+                              child: richText(
+                                  'How common is Lichen Planus and who does it affect?',
+                                  fontSize: 22 * scaleFactor,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic)),
+                        ),
+                        SizedBox(height: 20 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
                             padding: EdgeInsets.only(
                                 left: 35.0 * scaleFactor,
                                 right: 35 * scaleFactor),
-                            child: richText("Injury to the Skin",
-                                fontSize: 21 * scaleFactor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle: FontStyle.italic)),
-                      ),
-                      SizedBox(height: 10 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                            'Physical trauma or injury to the skin or mucous membranes can sometimes trigger the development of lichen planus at the site of the injury or after surgery (Koebnerisation).',
-                            fontSize: 20 * scaleFactor,
+                            child: richText(
+                              'According to an article published by Dr. Jacqueline Chen (2023), a doctor from Kaiser Sunnyside Medical Center, she stated that LP affects approximately 0.22% to 1% of the adult population worldwide, mostly affecting adults aged between 30 to 60 years. Thus, it has no strong racial predilection. Approximately 10% of those affected have lichen planus of the nails while half of those affected have oral lichen planus, which is more common in women than in men.',
+                              fontSize: 20 * scaleFactor,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 10 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
+                      ],
+                    )),
+                snappingSlider(
+                    key: 'Overview of Lichen Planus III',
+                    previousKey: 'Overview of Lichen Planus II',
+                    nextKey: 'Photos of Lichen Planus',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
                             padding: EdgeInsets.only(
                                 left: 35.0 * scaleFactor,
                                 right: 35 * scaleFactor),
-                            child: richText("Medications",
-                                fontSize: 21 * scaleFactor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle: FontStyle.italic)),
-                      ),
-                      SizedBox(height: 10 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                            'Certain medications have been associated with the development of lichen planus as these include medications that are used to treat high blood pressure, heart disease, arthritis, and mental health conditions.',
-                            fontSize: 20 * scaleFactor,
+                            child: richText(
+                              'Some studies suggest women might get lichen planus twice as often as men, and they’re more likely to develop it in their 60s. Men are more likely to develop it in their 40s.',
+                              fontSize: 20 * scaleFactor,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 10 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
+                        SizedBox(height: 20 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35.0 * scaleFactor,
+                                  right: 35 * scaleFactor),
+                              child: richText(
+                                  'Is Lichen Planus an autoimmune disease?',
+                                  fontSize: 22 * scaleFactor,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic)),
+                        ),
+                        SizedBox(height: 20 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
                             padding: EdgeInsets.only(
                                 left: 35.0 * scaleFactor,
                                 right: 35 * scaleFactor),
-                            child: richText("Allergies and Chemicals",
-                                fontSize: 21 * scaleFactor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle: FontStyle.italic)),
-                      ),
-                      SizedBox(height: 10 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                            'Contact allergies and chemicals such as metal fillings, dyes, or other harmful substances may trigger lichen planus in susceptible individuals.',
-                            fontSize: 20 * scaleFactor,
+                            child: richText(
+                              'Some studies suggest that Lichen Planus isn’t an autoimmune condition, yet it can cause a similar response. It is an unknown condition that causes inflammation in your skin.  In lichen planus, your body’s immune system attacks parts of your body instead of protecting your body from foreign invaders like bacteria or viruses. In a healthy immune system, special cells called T cells help protect your body from infection. However, in people with LP, their immune system’s T cells attack an unknown protein within the skin and mucous keratinocytes. While the reason for the T cells’ attack is still unknown, further studies are still needed to be done to understand the anomaly.',
+                              fontSize: 20 * scaleFactor,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 10 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
+                      ],
+                    )),
+                snappingSlider(
+                    key: 'Photos of Lichen Planus',
+                    previousKey: 'Overview of Lichen Planus III',
+                    nextKey: 'Causes of Lichen Planus I',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
                             padding: EdgeInsets.only(
                                 left: 35.0 * scaleFactor,
                                 right: 35 * scaleFactor),
-                            child: richText("Stress",
-                                fontSize: 21 * scaleFactor,
-                                fontWeight: FontWeight.w600,
-                                fontStyle: FontStyle.italic)),
-                      ),
-                      SizedBox(height: 10 * scaleFactor),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                            'Psychological stress has been suggested as a possible trigger for lichen planus in some cases. While the exact relationship between stress and skin condition is not yet fully understood, stress management techniques can help manage symptoms.',
-                            fontSize: 20 * scaleFactor,
+                            child: Text(
+                              'How does Lichen Planus affect my body?',
+                              style: TextStyle(
+                                  fontSize: 22 * scaleFactor,
+                                  fontWeight: FontWeight.w900,
+                                  fontStyle: FontStyle.italic),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  )
-                ),
-                snappingSlider(key: 'Symptoms of Lichen Planus I', previousKey: 'Causes of Lichen Planus II', nextKey: 'Symptoms of Lichen Planus II', scaleFactor: scaleFactor, 
-                  bodyWidget: Column(children: [
-                      Align(
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: Column(
+                              children: [
+                                richText(
+                                  'Lichen Planus commonly affects the skin around a person’s wrists and elbows (flexor surfaces), the back of your hands (dorsal surfaces), and the fronts of your lower legs. About half of all people who have lichen planus develop oral lichen planus, which affects the skin inside of your mouth and your tongue. The lesions on the body of a person with lichen planus usually start as tiny, raised dots (papules) that are about the size of the tip of a pin (0.4 millimeters [mm]). They may grow up to the width of a pencil (1 centimeter [cm]).',
+                                  fontSize: 20 * scaleFactor,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10 * scaleFactor),
+                        const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 35.0),
+                            child: Text(
+                              'Photos',
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 5 * scaleFactor),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: CarouselSlider(
+                            options: CarouselOptions(
+                              height: 200 * scaleFactor,
+                              enlargeCenterPage: true,
+                              enableInfiniteScroll: true,
+                              autoPlay: true,
+                              autoPlayInterval: Duration(seconds: 3),
+                              autoPlayAnimationDuration:
+                                  Duration(milliseconds: 800),
+                              autoPlayCurve: Curves.fastOutSlowIn,
+                              scrollDirection: Axis.horizontal,
+                            ),
+                            items: [
+                              [
+                                'assets/imgs/lichenpedia_image1.png',
+                                'assets/imgs/lichenpedia_image2.png'
+                              ],
+                              [
+                                'assets/imgs/mucosal1.png',
+                                'assets/imgs/mucosal2.png'
+                              ],
+                              [
+                                'assets/imgs/plano1.png',
+                                'assets/imgs/plano2.png'
+                              ],
+                              [
+                                'assets/imgs/pigmen1.png',
+                                'assets/imgs/pigmen2.png'
+                              ],
+                              [
+                                'assets/imgs/nails1.png',
+                                'assets/imgs/nails2.png'
+                              ],
+                            ].map((itemList) {
+                              return Builder(
+                                builder: (BuildContext context) {
+                                  return Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: itemList.map((item) {
+                                      return SizedBox(
+                                        width: 190 * scaleFactor,
+                                        child: Image.asset(
+                                          item,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      );
+                                    }).toList(),
+                                  );
+                                },
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                        SizedBox(height: 5 * scaleFactor),
+                      ],
+                    )),
+                snappingSlider(
+                    key: 'Causes of Lichen Planus I',
+                    previousKey: 'Photos of Lichen Planus',
+                    nextKey: 'Causes of Lichen Planus II',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: Text(
+                              'Causes of Lichen Planus',
+                              style: TextStyle(
+                                  fontSize: 24 * scaleFactor,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'The exact cause of Lichen Planus is not known, but the following are the possible causes that can contribute to the occurrence of the skin condition:',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35.0 * scaleFactor,
+                                  right: 35 * scaleFactor),
+                              child: richText('Systemic Viral Infection',
+                                  fontSize: 21 * scaleFactor,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic)),
+                        ),
+                        SizedBox(height: 10 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'While having Hepatitis C is not fully associated with having Lichen Planus, some studies have been done to understand the exact mechanism and the relationship between the two conditions. Hepatitis C infection can lead to immune system dysregulation where it becomes overactive resulting in various autoimmune reactions modifying self-antigens on the surface of basal keratinocytes.',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35.0 * scaleFactor,
+                                  right: 35 * scaleFactor),
+                              child: richText("Genetic Predisposition",
+                                  fontSize: 21 * scaleFactor,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic)),
+                        ),
+                        SizedBox(height: 10 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'A person’s genetic makeup can be a possible reason, as it can sometimes run in families because certain genetic factors may make individuals more susceptible to developing the skin condition.',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+                snappingSlider(
+                    key: 'Causes of Lichen Planus II',
+                    previousKey: 'Causes of Lichen Planus I',
+                    nextKey: 'Symptoms of Lichen Planus I',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35.0 * scaleFactor,
+                                  right: 35 * scaleFactor),
+                              child: richText("Injury to the Skin",
+                                  fontSize: 21 * scaleFactor,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic)),
+                        ),
+                        SizedBox(height: 10 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'Physical trauma or injury to the skin or mucous membranes can sometimes trigger the development of lichen planus at the site of the injury or after surgery (Koebnerisation).',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35.0 * scaleFactor,
+                                  right: 35 * scaleFactor),
+                              child: richText("Medications",
+                                  fontSize: 21 * scaleFactor,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic)),
+                        ),
+                        SizedBox(height: 10 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'Certain medications have been associated with the development of lichen planus as these include medications that are used to treat high blood pressure, heart disease, arthritis, and mental health conditions.',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35.0 * scaleFactor,
+                                  right: 35 * scaleFactor),
+                              child: richText("Stress",
+                                  fontSize: 21 * scaleFactor,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic)),
+                        ),
+                        SizedBox(height: 10 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'Psychological stress has been suggested as a possible trigger for lichen planus in some cases. While the exact relationship between stress and skin condition is not yet fully understood, stress management techniques can help manage symptoms.',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+                snappingSlider(
+                    key: 'Symptoms of Lichen Planus I',
+                    previousKey: 'Causes of Lichen Planus II',
+                    nextKey: 'Symptoms of Lichen Planus II',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
+                        Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
                             padding: EdgeInsets.only(
@@ -741,10 +759,15 @@ class _LichenPediaState extends State<LichenPedia> {
                             ),
                           ),
                         ),
-                  ],)
-                ),
-                snappingSlider(key: 'Symptoms of Lichen Planus II', previousKey: 'Symptoms of Lichen Planus I', nextKey: 'Treatments of Lichen Planus I', scaleFactor: scaleFactor, 
-                  bodyWidget: Column(children: [
+                      ],
+                    )),
+                snappingSlider(
+                    key: 'Symptoms of Lichen Planus II',
+                    previousKey: 'Symptoms of Lichen Planus I',
+                    nextKey: 'Treatments of Lichen Planus I',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
@@ -762,8 +785,7 @@ class _LichenPediaState extends State<LichenPedia> {
                                 const Align(
                                   alignment: Alignment.centerLeft,
                                   child: Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 7, right: 0),
+                                    padding: EdgeInsets.only(left: 7, right: 0),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -868,628 +890,680 @@ class _LichenPediaState extends State<LichenPedia> {
                             ),
                           ),
                         ),
-                  ],)
-                ),
-                snappingSlider(key: 'Treatments of Lichen Planus I', previousKey: 'Symptoms of Lichen Planus II', nextKey: 'Treatments of Lichen Planus II', scaleFactor: scaleFactor, 
-                  bodyWidget: Column(children: [
+                      ],
+                    )),
+                snappingSlider(
+                    key: 'Treatments of Lichen Planus I',
+                    previousKey: 'Symptoms of Lichen Planus II',
+                    nextKey: 'Treatments of Lichen Planus II',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
                         Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: Text('Treatments of Lichen Planus',
-                            style: TextStyle(
-                                fontSize: 26 * scaleFactor,
-                                fontWeight: FontWeight.w900)),
-                      ),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: richText(
-                          'If a biopsy reveals lichen planus but you remain asymptomatic, it is likely that treatment is unnecessary. In many instances, lichen planus tends to resolve naturally within two years. However, if you experience symptoms such as severe itching or the presence of sores in your mouth or genital area, treatment can be beneficial. In cases where lichen planus affects your scalp, treatment becomes crucial to prevent permanent hair loss.',
-                          fontSize: 20 * scaleFactor,
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: Text('Treatments of Lichen Planus',
+                                style: TextStyle(
+                                    fontSize: 26 * scaleFactor,
+                                    fontWeight: FontWeight.w900)),
+                          ),
                         ),
-                      ),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: richText(
-                          'Lichen Planus in general does not have a specific cure, the rashes are often observed to go away on their own. While the symptoms for every Lichen Planus can be annoying and bothersome, there are still some treatments to alleviate and improve the healing recovery.',
-                          fontSize: 20 * scaleFactor,
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'If a biopsy reveals lichen planus but you remain asymptomatic, it is likely that treatment is unnecessary. In many instances, lichen planus tends to resolve naturally within two years. However, if you experience symptoms such as severe itching or the presence of sores in your mouth or genital area, treatment can be beneficial. In cases where lichen planus affects your scalp, treatment becomes crucial to prevent permanent hair loss.',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ],)
-                ),
-                snappingSlider(key: 'Treatments of Lichen Planus II', previousKey: 'Treatments of Lichen Planus I', nextKey: 'Treatments of Lichen Planus III', scaleFactor: scaleFactor, 
-                  bodyWidget: Column(children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: richText(
-                          'The following are some clinical treatments suggested by dermatologists and researchers to bring relief to Lichen Planus:',
-                          fontSize: 20 * scaleFactor,
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'Lichen Planus in general does not have a specific cure, the rashes are often observed to go away on their own. While the symptoms for every Lichen Planus can be annoying and bothersome, there are still some treatments to alleviate and improve the healing recovery.',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText("General Measures",
-                              fontSize: 21 * scaleFactor,
-                              fontWeight: FontWeight.w600,
-                              fontStyle: FontStyle.italic)),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 45.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              '· Avoidance of soap and shower gel that will exacerbate scaling',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
+                      ],
+                    )),
+                snappingSlider(
+                    key: 'Treatments of Lichen Planus II',
+                    previousKey: 'Treatments of Lichen Planus I',
+                    nextKey: 'Treatments of Lichen Planus III',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'The following are some clinical treatments suggested by dermatologists and researchers to bring relief to Lichen Planus:',
+                              fontSize: 20 * scaleFactor,
                             ),
-                            Text(
-                              '· Avoidance of UV light',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '· Use of emollients regularly',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                              "Specific Measures (Topical Treatments)",
-                              fontSize: 21 * scaleFactor,
-                              fontWeight: FontWeight.w600,
-                              fontStyle: FontStyle.italic)),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 45.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              '· Topical corticosteroids, such as clobetasol, for mild to moderate cutaneous involvement',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '· Topical tacrolimus can be useful for sites of skin atrophy, but not ideal for areas with active lesions and erosions',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '· Topical budesonide for oral GVHD',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '· Moisturizers and antihistamines for itch.',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                          ],
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35.0 * scaleFactor,
+                                  right: 35 * scaleFactor),
+                              child: richText("General Measures",
+                                  fontSize: 21 * scaleFactor,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic)),
                         ),
-                      ),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText(
-                              "Specific Measures (Systematic Treatments)",
-                              fontSize: 21 * scaleFactor,
-                              fontWeight: FontWeight.w600,
-                              fontStyle: FontStyle.italic)),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 35.0, right: 35),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              '· Oral corticosteroids, a common treatment for acute asthma flare-ups to reduce inflammation and swelling in the airways',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 45.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  '· Avoidance of soap and shower gel that will exacerbate scaling',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· Avoidance of UV light',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· Use of emollients regularly',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ],)
-                ),
-                snappingSlider(key: 'Treatments of Lichen Planus III', previousKey: 'Treatments of Lichen Planus II', nextKey: 'Diagnosis of Lichen Planus I', scaleFactor: scaleFactor, 
-                  bodyWidget: Column(children: [
-                     Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 35.0, right: 35),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              '· Oral tacrolimus, an immune system suppressant to prevent rejection in individuals who have received organ transplants.',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                          ],
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35.0 * scaleFactor,
+                                  right: 35 * scaleFactor),
+                              child: richText(
+                                  "Specific Measures (Topical Treatments)",
+                                  fontSize: 21 * scaleFactor,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic)),
                         ),
-                      ),
-                    ),
-                    SizedBox(height: 15*scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 35.0, right: 35),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              '· Extracorporeal photopheresis (a technique whereby peripheral blood white blood cells are irradiated with ultraviolet light then reinfused) can provide up to 80% resolution in cutaneous GVHD',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 45.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  '· Topical corticosteroids, such as clobetasol, for mild to moderate cutaneous involvement',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· Topical tacrolimus can be useful for sites of skin atrophy, but not ideal for areas with active lesions and erosions',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· Topical budesonide for oral GVHD',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· Moisturizers and antihistamines for itch.',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                              ],
                             ),
-                            Text(
-                              '· Narrowband UVB phototherapy may be useful in lichenoid lesions',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '· Photochemotherapy (PUVA) may be effective for sclerodermatous lesions',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '· Mycophenolate mofetil, however overall efficacy is limited',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '· Sirolimus',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '· JAK inhibitors',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '· Rituximab has been shown to be effective in some cases',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ],)
-                ),
-                snappingSlider(key: 'Diagnosis of Lichen Planus I', previousKey: 'Treatments of Lichen Planus III', nextKey: 'Diagnosis of Lichen Planus II', scaleFactor: scaleFactor, 
-                  bodyWidget: Column(children: [
-                      Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: Text(
-                          'Diagnosis of Lichen Planus',
-                          style: TextStyle(
-                              fontSize: 28 * scaleFactor,
-                              fontWeight: FontWeight.w900),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35.0 * scaleFactor,
+                                  right: 35 * scaleFactor),
+                              child: richText(
+                                  "Specific Measures (Systematic Treatments)",
+                                  fontSize: 21 * scaleFactor,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic)),
                         ),
-                      ),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText('How is Lichen Planus diagnosed?',
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 35.0, right: 35),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  '· Oral corticosteroids, a common treatment for acute asthma flare-ups to reduce inflammation and swelling in the airways',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+                snappingSlider(
+                    key: 'Treatments of Lichen Planus III',
+                    previousKey: 'Treatments of Lichen Planus II',
+                    nextKey: 'Diagnosis of Lichen Planus I',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 35.0, right: 35),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  '· Oral tacrolimus, an immune system suppressant to prevent rejection in individuals who have received organ transplants.',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 35.0, right: 35),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  '· Extracorporeal photopheresis (a technique whereby peripheral blood white blood cells are irradiated with ultraviolet light then reinfused) can provide up to 80% resolution in cutaneous GVHD',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· Narrowband UVB phototherapy may be useful in lichenoid lesions',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· Photochemotherapy (PUVA) may be effective for sclerodermatous lesions',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· Mycophenolate mofetil, however overall efficacy is limited',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· Sirolimus',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· JAK inhibitors',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· Rituximab has been shown to be effective in some cases',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+                snappingSlider(
+                    key: 'Diagnosis of Lichen Planus I',
+                    previousKey: 'Treatments of Lichen Planus III',
+                    nextKey: 'Diagnosis of Lichen Planus II',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: Text(
+                              'Diagnosis of Lichen Planus',
+                              style: TextStyle(
+                                  fontSize: 28 * scaleFactor,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35.0 * scaleFactor,
+                                  right: 35 * scaleFactor),
+                              child: richText('How is Lichen Planus diagnosed?',
+                                  fontSize: 22 * scaleFactor,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic)),
+                        ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'Lichen planus is usually diagnosed by your healthcare provider through a symptom assessment and physical examination. They\'ll often search for key features, referred to as the "Six Ps," to confirm the diagnosis:',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 55.0 * scaleFactor,
+                                right: 45 * scaleFactor),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  '1. Prutitic (They\'re itchy).',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '2. Polygonal (Your rash shape has many sharp angles)',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '3. Planar (The top is flat).',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '4. Purple (They present a purplish color)',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '5. Papules (presence of bumps)',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '6. Plagues (raised, discolored, patches)',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'If there\'s any doubt, your healtcare provider may perform the following tests:',
                               fontSize: 22 * scaleFactor,
-                              fontWeight: FontWeight.w600,
-                              fontStyle: FontStyle.italic)),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: richText(
-                          'Lichen planus is usually diagnosed by your healthcare provider through a symptom assessment and physical examination. They\'ll often search for key features, referred to as the "Six Ps," to confirm the diagnosis:',
-                          fontSize: 20 * scaleFactor,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 55.0 * scaleFactor, right: 45 * scaleFactor),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              '1. Prutitic (They\'re itchy).',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
                             ),
-                            Text(
-                              '2. Polygonal (Your rash shape has many sharp angles)',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '3. Planar (The top is flat).',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '4. Purple (They present a purplish color)',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '5. Papules (presence of bumps)',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '6. Plagues (raised, discolored, patches)',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: richText(
-                          'If there\'s any doubt, your healtcare provider may perform the following tests:',
-                          fontSize: 22 * scaleFactor,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: richText(
-                          'Allergy test. An allergy test can determine if you have an allergy that\'s causing your lichen planus flare-up',
-                          fontSize: 20 * scaleFactor,
-                        ),
-                      ),
-                    ),
-                  ],)
-                ),
-                snappingSlider(key: 'Diagnosis of Lichen Planus II', previousKey: 'Diagnosis of Lichen Planus I', nextKey: '', scaleFactor: scaleFactor, 
-                  bodyWidget: Column(children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: richText(
-                          'Biopsy. Your healthcare provider will use a thin blade (scalpel) or a punch tool to collect a small sample of skin from your rash. Your skin sample goes to a laboratory for testing and pathologists examines it under a microscope.',
-                          fontSize: 20 * scaleFactor,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: richText(
-                          'Hepatitis C test. Lichen planus is sometimes associated with the hepatitis C virus.',
-                          fontSize: 20 * scaleFactor,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 35.0 * scaleFactor,
-                              right: 35 * scaleFactor),
-                          child: richText('How to manage Lichen Planus?',
-                              fontSize: 22 * scaleFactor,
-                              fontWeight: FontWeight.w600,
-                              fontStyle: FontStyle.italic)),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: richText(
-                          'You can’t do much to prevent lichen planus, but once you have it, you can take steps to keep it from getting worse.',
-                          fontSize: 20 * scaleFactor,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 55.0 * scaleFactor, right: 45 * scaleFactor),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              '· Avoid injuries to your skin.',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '· Apply cool compresses instead of scratching.',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '· Limit the stress in your life.',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                            Text(
-                              '· For oral lichen planus, stop smoking, avoid alcohol, maintain good oral hygiene, and avoid any foods that seem to irritate your mouth.',
-                              style: TextStyle(
-                                fontSize: 20 * scaleFactor,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15 * scaleFactor),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 35.0 * scaleFactor, right: 35 * scaleFactor),
-                        child: richText(
-                          'Lichen planus is not a dangerous disease, and it usually goes away on its own. However, in some people, it may come back.',
-                          fontSize: 20 * scaleFactor,
-                        ),
-                      ),
-                    ),
-                  ],)
-                ),
-                snappingSlider(key: '', previousKey: 'Diagnosis of Lichen Planus II', scaleFactor: scaleFactor, 
-                  bodyWidget: Column(
-                    children: [
-                      const SizedBox(height: 15),
-                      Center(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 35.0, right: 35),
-                          child: Text(
-                            'Discover more about Lichen Planus',
-                            style: TextStyle(
-                                fontSize: 26 * scaleFactor,
-                                fontWeight: FontWeight.w900),
-                            textAlign: TextAlign
-                                .center, // Center align the text within the Text widget
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 15),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 45.0, right: 45),
-                        child: Container(
-                          // Adjust the padding
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed('/lichenpedia/lichenpedia_vault');
-                            },
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'Allergy test. An allergy test can determine if you have an allergy that\'s causing your lichen planus flare-up',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+                snappingSlider(
+                    key: 'Diagnosis of Lichen Planus II',
+                    previousKey: 'Diagnosis of Lichen Planus I',
+                    nextKey: '',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'Biopsy. Your healthcare provider will use a thin blade (scalpel) or a punch tool to collect a small sample of skin from your rash. Your skin sample goes to a laboratory for testing and pathologists examines it under a microscope.',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'Hepatitis C test. Lichen planus is sometimes associated with the hepatitis C virus.',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 35.0 * scaleFactor,
+                                  right: 35 * scaleFactor),
+                              child: richText('How to manage Lichen Planus?',
+                                  fontSize: 22 * scaleFactor,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic)),
+                        ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'You can’t do much to prevent lichen planus, but once you have it, you can take steps to keep it from getting worse.',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 55.0 * scaleFactor,
+                                right: 45 * scaleFactor),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  '· Avoid injuries to your skin.',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· Apply cool compresses instead of scratching.',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· Limit the stress in your life.',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                                Text(
+                                  '· For oral lichen planus, stop smoking, avoid alcohol, maintain good oral hygiene, and avoid any foods that seem to irritate your mouth.',
+                                  style: TextStyle(
+                                    fontSize: 20 * scaleFactor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 35.0 * scaleFactor,
+                                right: 35 * scaleFactor),
+                            child: richText(
+                              'Lichen planus is not a dangerous disease, and it usually goes away on its own. However, in some people, it may come back.',
+                              fontSize: 20 * scaleFactor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+                snappingSlider(
+                    key: '',
+                    previousKey: 'Diagnosis of Lichen Planus II',
+                    scaleFactor: scaleFactor,
+                    bodyWidget: Column(
+                      children: [
+                        const SizedBox(height: 15),
+                        Center(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 35.0, right: 35),
                             child: Text(
-                              'Explore Lichen Planus through Online Videos',
+                              'Discover more about Lichen Planus',
                               style: TextStyle(
-                                fontSize: 15.0,
-                                color: Colors.white,
-                              ),
+                                  fontSize: 26 * scaleFactor,
+                                  fontWeight: FontWeight.w900),
                               textAlign: TextAlign.center,
                             ),
-                            style: ButtonStyle(
-                              padding: MaterialStateProperty.all<EdgeInsets>(
-                                EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 20 * scaleFactor),
-                              ),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color(0xFFFF7F50)),
-                              shape:
-                                  MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  side: BorderSide(
-                                      color: Colors.white,
-                                      width: 2.0), // Add the white border here
-                                ),
-                              ),
-                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 25 * scaleFactor),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 45.0, right: 45),
-                        child: Container(
-                          // Adjust the padding
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed('/lichenpedia/lichenpedia_archive');
-                            },
-                            child: Text(
-                              'Discover Lichen Planus through Academic Publications',
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            style: ButtonStyle(
-                              padding: MaterialStateProperty.all<EdgeInsets>(
-                                EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 20 * scaleFactor),
-                              ),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color(0xFFFF7F50)),
-                              shape:
-                                  MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  side: BorderSide(
-                                      color: Colors.white,
-                                      width: 2.0), // Add the white border here
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 25 * scaleFactor),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 45.0, right: 45),
-                        child: Container(
-                          // Adjust the padding
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed('/lichenpedia/lichenpedia_reference');
-                            },
-                            child: Text(
-                              ' See References and Sources                ',
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            style: ButtonStyle(
-                              padding: MaterialStateProperty.all<EdgeInsets>(
-                                EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 20 * scaleFactor),
-                              ),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  const Color(0xFFFF7F50)),
-                              shape:
-                                  MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  side: BorderSide(
-                                      color: Colors.white,
-                                      width: 2.0), // Add the white border here
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 15*scaleFactor),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
+                        const SizedBox(height: 15),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 45.0, right: 45),
+                          child: Container(
+                            // Adjust the padding
+                            child: ElevatedButton(
                               onPressed: () {
-                                currentSection = 1;
-                                _onArrowDownPressed(scrollKeys["Overview of Lichen Planus I"]!);
+                                Navigator.of(context).pushNamed(
+                                    '/lichenpedia/lichenpedia_vault');
                               },
-                              icon: const Icon(
-                                  Icons.keyboard_double_arrow_up_outlined,
-                                  color: Color(0xFFFF7F50)),
+                              child: Text(
+                                'Explore Lichen Planus through Online Videos',
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                  color: Colors.white,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<EdgeInsets>(
+                                  EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 20 * scaleFactor),
+                                ),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        const Color(0xFFFF7F50)),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    side: BorderSide(
+                                        color: Colors.white, width: 2.0),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                      GestureDetector(
+                        SizedBox(height: 25 * scaleFactor),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 45.0, right: 45),
+                          child: Container(
+                            // Adjust the padding
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pushNamed(
+                                    '/lichenpedia/lichenpedia_archive');
+                              },
+                              child: Text(
+                                'Discover Lichen Planus through Academic Publications',
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                  color: Colors.white,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<EdgeInsets>(
+                                  EdgeInsets.symmetric(
+                                      horizontal: 15,
+                                      vertical: 20 * scaleFactor),
+                                ),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        const Color(0xFFFF7F50)),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    side: BorderSide(
+                                        color: Colors.white,
+                                        width:
+                                            2.0), // Add the white border here
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 25 * scaleFactor),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 45.0, right: 45),
+                          child: Container(
+                            // Adjust the padding
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.of(context).pushNamed(
+                                    '/lichenpedia/lichenpedia_reference');
+                              },
+                              child: Text(
+                                ' See References and Sources                ',
+                                style: TextStyle(
+                                  fontSize: 15.0,
+                                  color: Colors.white,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              style: ButtonStyle(
+                                padding: MaterialStateProperty.all<EdgeInsets>(
+                                  EdgeInsets.symmetric(
+                                      horizontal: 15,
+                                      vertical: 20 * scaleFactor),
+                                ),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        const Color(0xFFFF7F50)),
+                                shape: MaterialStateProperty.all<
+                                    RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    side: BorderSide(
+                                        color: Colors.white,
+                                        width:
+                                            2.0), // Add the white border here
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15 * scaleFactor),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 25),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  currentSection = 1;
+                                  _onArrowDownPressed(scrollKeys[
+                                      "Overview of Lichen Planus I"]!);
+                                },
+                                icon: const Icon(
+                                    Icons.keyboard_double_arrow_up_outlined,
+                                    color: Color(0xFFFF7F50)),
+                              ),
+                            ],
+                          ),
+                        ),
+                        GestureDetector(
                           onTap: () {
                             currentSection = 1;
-                            _onArrowDownPressed(scrollKeys["Overview of Lichen Planus I"]!);
+                            _onArrowDownPressed(
+                                scrollKeys["Overview of Lichen Planus I"]!);
                           },
                           child: const Center(
                             child: Text(
@@ -1501,9 +1575,8 @@ class _LichenPediaState extends State<LichenPedia> {
                             ),
                           ),
                         ),
-                    ],
-                  ) 
-                ),
+                      ],
+                    )),
               ],
             ),
           ),
@@ -1638,7 +1711,9 @@ class _LichenPediaState extends State<LichenPedia> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                category.replaceAll("of Lichen Planus", '').replaceAll(" I", ''),
+                category
+                    .replaceAll("of Lichen Planus", '')
+                    .replaceAll(" I", ''),
                 style: const TextStyle(
                   fontSize: 18,
                   color: Colors.white,
@@ -1650,95 +1725,128 @@ class _LichenPediaState extends State<LichenPedia> {
       ),
     );
   }
-  Widget snappingSlider({required String key , required String previousKey, String? nextKey , required double scaleFactor, required Widget bodyWidget}){
+
+  Widget snappingSlider(
+      {required String key,
+      required String previousKey,
+      String? nextKey,
+      required double scaleFactor,
+      required Widget bodyWidget}) {
     return SizedBox(
-                  height: (scaleFactor*1080)- (140),
-                  child: Column(
-                    children: [
-                      Padding(
-                        key: scrollKeys[key],
-                        padding: const EdgeInsets.symmetric(horizontal: 25),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: 50*scaleFactor,
-                              child: IconButton(
-                                onPressed: () {
-                                  currentSection -= 1;
-                                  _onArrowDownPressed(scrollKeys[previousKey]!);
-                                },
-                                icon: const Icon(Icons.keyboard_arrow_up,
-                                    color: Color(0xFFFF7F50)),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Center(
-                        child: GestureDetector(
-                          onTap: () {
-                            currentSection -= 1;
-                            _onArrowDownPressed(scrollKeys[previousKey]!);
-                          },
-                          child: Text(
-                            previousKey,
-                            style: const TextStyle(
-                              color: Color(0xFFFF7F50),
-                              fontSize: 15,
-                            ),
+      height: (scaleFactor * 1080) - (140),
+      child: Column(
+        children: [
+          Padding(
+            key: scrollKeys[key],
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 50 * scaleFactor,
+                  child: IconButton(
+                    onPressed: () {
+                      currentSection -= 1;
+                      _onArrowDownPressed(scrollKeys[previousKey]!);
+                    },
+                    icon: const Icon(Icons.keyboard_arrow_up,
+                        color: Color(0xFFFF7F50)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                currentSection -= 1;
+                _onArrowDownPressed(scrollKeys[previousKey]!);
+              },
+              child: Text(
+                previousKey,
+                style: const TextStyle(
+                  color: Color(0xFFFF7F50),
+                  fontSize: 15,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 15 * scaleFactor,
+          ),
+          bodyWidget,
+          const Spacer(),
+          (nextKey == null)
+              ? const SizedBox()
+              : Column(
+                  children: [
+                    Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          currentSection += 1;
+                          _onArrowDownPressed(scrollKeys[nextKey]!);
+                        },
+                        child: Text(
+                          nextKey,
+                          style: const TextStyle(
+                            color: Color(0xFFFF7F50),
+                            fontSize: 15,
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 15 * scaleFactor,
-                      ),
-                      bodyWidget,
-                      const Spacer(),
-                      (nextKey == null) ? const SizedBox() : Column(
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Center(
-                            child: GestureDetector(
-                              onTap: () {
+                          SizedBox(
+                            height: 50 * scaleFactor,
+                            child: IconButton(
+                              onPressed: () {
                                 currentSection += 1;
                                 _onArrowDownPressed(scrollKeys[nextKey]!);
                               },
-                              child: Text(
-                                nextKey,
-                                style: const TextStyle(
-                                  color: Color(0xFFFF7F50),
-                                  fontSize: 15,
-                                ),
-                              ),
+                              icon: Icon(Icons.keyboard_arrow_down,
+                                  color: Color(0xFFFF7F50)),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 25),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 50*scaleFactor,
-                                  child: IconButton(
-                                    onPressed: () {
-                                      currentSection += 1;
-                                      _onArrowDownPressed(scrollKeys[nextKey]!);
-                                    },
-                                    icon: Icon(Icons.keyboard_arrow_down,
-                                        color: Color(0xFFFF7F50)),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
                           ),
                         ],
-                      )
-                    ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  ],
+                ),
+          if (key != '')
+            Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () {
+                    setState(() {
+                      currentSection = 0;
+                      _onArrowDownPressed(scrollKeys["Table of Contents"]!);
+                    });
+                  },
+                  child: CircleAvatar(
+                    radius: 20,
+                    backgroundColor: primaryforegroundColor,
+                    child: Icon(
+                      Icons.arrow_upward,
+                      size: 20,
+                      color: Colors.white,
+                    ),
                   ),
-                );
+                ),
+              ),
+            )
+        ],
+      ),
+    );
   }
 }
-

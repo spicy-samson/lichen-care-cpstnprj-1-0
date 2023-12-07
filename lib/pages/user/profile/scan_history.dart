@@ -26,7 +26,6 @@ class LichenCheckEntry {
 
 Color primaryforegroundColor = const Color(0xFFFF7F50);
 
-
 class _ScanHistory extends State<ScanHistory> {
   int _currentIndex = 4;
   String selectedOption = 'All'; // Default selected option
@@ -66,17 +65,17 @@ class _ScanHistory extends State<ScanHistory> {
 
       // Body
       body: Listener(
-         onPointerMove: (pointer){
+        onPointerMove: (pointer) {
           // debugPrint(pointer.delta);
-          if(pointer.delta.dy == 0){
+          if (pointer.delta.dy == 0) {
             return;
           }
-          if(pointer.delta.dy < 0){
+          if (pointer.delta.dy < 0) {
             // scrolls down
             setState(() {
               navigatorHidden = true;
             });
-          }else{
+          } else {
             // scrolls up
             setState(() {
               navigatorHidden = false;
@@ -89,22 +88,22 @@ class _ScanHistory extends State<ScanHistory> {
             child: FutureBuilder<Map<String, LichenCheckEntry>>(
               future: _lichenEntryData,
               builder: (context, snapshot) {
-                if(snapshot.connectionState == ConnectionState.waiting){
-                    return CircularProgressIndicator(
-                      color: primaryforegroundColor,
-                    );            
-                }
-                else if (snapshot.hasError) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator(
+                    color: primaryforegroundColor,
+                  );
+                } else if (snapshot.hasError) {
                   return Text("Error: ${snapshot.error}");
                 } else {
                   Map<String, LichenCheckEntry> lichenCheckData =
                       snapshot.data ?? {};
-      
+
                   // Helper function to count entries based on the filter
-                  int countEntries(bool Function(LichenCheckEntry entry) filter) {
+                  int countEntries(
+                      bool Function(LichenCheckEntry entry) filter) {
                     return lichenCheckData.values.where(filter).length;
                   }
-      
+
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -155,7 +154,7 @@ class _ScanHistory extends State<ScanHistory> {
                               fontSize: 16, fontWeight: FontWeight.bold),
                         ),
                       ),
-      
+
                       // Display the number of results found based on the filter
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
@@ -176,7 +175,7 @@ class _ScanHistory extends State<ScanHistory> {
                           ),
                         ),
                       ),
-      
+
                       // Sorting the Scan History; 'All' is the default
                       if (selectedOption == 'All' ||
                           selectedOption == 'Detections' ||
@@ -185,18 +184,20 @@ class _ScanHistory extends State<ScanHistory> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           itemCount: lichenCheckData.length,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 8.0,
                             mainAxisSpacing: 8.0,
                           ),
                           itemBuilder: (context, index) {
                             var entryKey = lichenCheckData.keys.toList()[index];
-                            var isDetection =
-                                lichenCheckData[entryKey]?.results['detection'] !=
-                                    null;
-      
-                            if ((selectedOption == 'Detections' && isDetection) ||
+                            var isDetection = lichenCheckData[entryKey]
+                                    ?.results['detection'] !=
+                                null;
+
+                            if ((selectedOption == 'Detections' &&
+                                    isDetection) ||
                                 (selectedOption == 'No Detections' &&
                                     !isDetection) ||
                                 selectedOption == 'All') {
@@ -228,7 +229,7 @@ class _ScanHistory extends State<ScanHistory> {
                                 ),
                               );
                             } else {
-                              // If not meeting the condition, return an empty container
+
                               return Container();
                             }
                           },
@@ -244,10 +245,10 @@ class _ScanHistory extends State<ScanHistory> {
 
       // Floating action button
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: (navigatorHidden)? null:_lichenCheckBtn(context),
+      floatingActionButton: (navigatorHidden) ? null : _lichenCheckBtn(context),
 
       // Bottom navigation bar
-      bottomNavigationBar: (navigatorHidden)? null:_bottomNavBar(context),
+      bottomNavigationBar: (navigatorHidden) ? null : _bottomNavBar(context),
     );
   }
 

@@ -114,102 +114,100 @@ class _LichenHubState extends State<LichenHub> {
   final storage = FirebaseStorage.instance;
 
   Future loadPosts() async {
-    try {
-      final usersCollection = FirebaseFirestore.instance.collection('users');
-      final postsCollectionName = 'LichenHub_posts';
+    final usersCollection = FirebaseFirestore.instance.collection('users');
+    final postsCollectionName = 'LichenHub_posts';
 
-      List<Post> loadedPosts = [];
+    List<Post> loadedPosts = [];
 
-      // Get all posts from all users
-      var querySnapshot = await usersCollection.get();
-      for (var userDoc in querySnapshot.docs) {
-        final postsCollection =
-            userDoc.reference.collection(postsCollectionName);
+    // Get all posts from all users
+    var querySnapshot = await usersCollection.get();
+    for (var userDoc in querySnapshot.docs) {
+      final postsCollection = userDoc.reference.collection(postsCollectionName);
 
-        final userPostsSnapshot = await postsCollection
-            .orderBy('date_uploaded', descending: true)
+      final userPostsSnapshot = await postsCollection
+          .orderBy('date_uploaded', descending: true)
+          .get();
+
+      for (var doc in userPostsSnapshot.docs) {
+        var postDoc = doc.data() as Map<String, dynamic>;
+
+        var content = QuillController.basic();
+        try {
+          content.document = Document.fromJson(jsonDecode(postDoc['content']));
+        } catch (e) {
+          content.document = Document()..insert(0, postDoc['content'] ?? '');
+        }
+
+        // Create a new Post object
+        var post = Post(
+          id: doc.id,
+          userID: postDoc['userID'] ?? '',
+          user: postDoc['uploader_name'] ?? '',
+          datetime: postDoc['date_uploaded']?.toDate(),
+          title: postDoc['title'] ?? '',
+          content: content,
+          isLiked: ((postDoc['likedByUserIds'] != null)
+              ? (postDoc['likedByUserIds'] ?? []).contains(postDoc['userID'])
+              : false),
+          likes: (postDoc['likedByUserIds'] != null)
+              ? postDoc['likedByUserIds'].length
+              : 0,
+          likedByUserIds: postDoc['likedByUserIds'] ?? [],
+          comments: [],
+          embeddedImage: postDoc['file_image'],
+        );
+
+        // Fetch comments
+        var commentsQuery = await doc.reference
+            .collection('comments')
+            .orderBy('timestamp', descending: true)
             .get();
 
-        for (var doc in userPostsSnapshot.docs) {
-          var postDoc = doc.data() as Map<String, dynamic>;
+        post.comments = [];
 
-          var content = QuillController.basic();
-          try {
-            content.document =
-                Document.fromJson(jsonDecode(postDoc['content']));
-          } catch (e) {
-            content.document = Document()..insert(0, postDoc['content'] ?? '');
-          }
+        for (var commentDoc in commentsQuery.docs) {
+          var commentData = commentDoc.data() as Map<String, dynamic>;
 
-          // Create a new Post object
-          var post = Post(
-            id: doc.id,
-            userID: postDoc['userID'] ?? '',
-            user: postDoc['uploader_name'] ?? '',
-            datetime: postDoc['date_uploaded']?.toDate(),
-            title: postDoc['title'] ?? '',
-            content: content,
-            isLiked:  (  ( postDoc['likedByUserIds'] != null) ? (postDoc['likedByUserIds'] ?? []).contains(postDoc['userID']) : false),
-            likes: ( postDoc['likedByUserIds'] != null) ?  postDoc['likedByUserIds'].length : 0,
-            likedByUserIds: postDoc['likedByUserIds'] ?? [],
-            comments: [],
-            embeddedImage: postDoc['file_image'],
-          );
-
-          // Fetch comments
-          var commentsQuery = await doc.reference
-              .collection('comments')
-              .orderBy('timestamp', descending: true)
+          // Fetch the sender details
+          var senderID = commentData['senderID'] ?? '';
+          var senderDoc = await FirebaseFirestore.instance
+              .collection('users')
+              .doc(senderID)
               .get();
 
-          post.comments = [];
+          var senderFirstName =
+              senderDoc.exists ? senderDoc['first_name'] ?? '' : 'Unknown User';
 
-          for (var commentDoc in commentsQuery.docs) {
-            var commentData = commentDoc.data() as Map<String, dynamic>;
+          // Create a new Comment object
+          var comment = Comment(
+            id: commentDoc.id,
+            senderID: senderID,
+            sender: makeAnonymous(senderFirstName),
+            reply: commentData['reply'] ?? '',
+            datetime: commentData['timestamp']?.toDate() ?? '',
+          );
 
-            // Fetch the sender details
-            var senderID = commentData['senderID'] ?? '';
-            var senderDoc = await FirebaseFirestore.instance
-                .collection('users')
-                .doc(senderID)
-                .get();
-
-            var senderFirstName = senderDoc['first_name'] ?? '';
-
-            // Create a new Comment object
-            var comment = Comment(
-              id: commentDoc.id,
-              senderID: senderID,
-              sender: makeAnonymous(senderFirstName),
-              reply: commentData['reply'] ?? '',
-              datetime: commentData['timestamp']?.toDate() ?? '',
-            );
-
-            // Add the comment to the post's comments list
-            post.comments.add(comment);
-          }
-
-          loadedPosts.add(post);
+          // Add the comment to the post's comments list
+          post.comments.add(comment);
         }
+        loadedPosts.add(post);
       }
+    }
 
-      // Order loadedPosts by the latest timestamp before updating the local list
-      loadedPosts.sort((a, b) =>
-          (b.comments.isNotEmpty
-              ? b.comments[0].datetime?.millisecondsSinceEpoch ?? 0
-              : b.datetime?.millisecondsSinceEpoch ?? 0) -
-          (a.comments.isNotEmpty
-              ? a.comments[0].datetime?.millisecondsSinceEpoch ?? 0
-              : a.datetime?.millisecondsSinceEpoch ?? 0));
+    // Order loadedPosts by the latest timestamp before  updating the local list
+    loadedPosts.sort((a, b) =>
+        (b.comments.isNotEmpty
+            ? b.comments[0].datetime?.millisecondsSinceEpoch ?? 0
+            : b.datetime?.millisecondsSinceEpoch ?? 0) -
+        (a.comments.isNotEmpty
+            ? a.comments[0].datetime?.millisecondsSinceEpoch ?? 0
+            : a.datetime?.millisecondsSinceEpoch ?? 0));
 
-      // Update the local list with the loaded posts
-      if (mounted) {
-        setState(() {
-          posts = loadedPosts;
-        });
-      }
-    } catch (e) {
-      debugPrint('Error loading posts: $e');
+    // Update the local list with the loaded posts
+    if (mounted) {
+      setState(() {
+        posts = loadedPosts;
+      });
     }
   }
 
@@ -345,9 +343,8 @@ class _LichenHubState extends State<LichenHub> {
           post.comments = [newComment, ...post.comments];
         });
         await postDocRef.update({
-          'lastTouch':time.microsecondsSinceEpoch.toString(),
+          'lastTouch': time.microsecondsSinceEpoch.toString(),
         });
-
       } else {
         debugPrint('User document does not exist in Firestore');
       }
@@ -476,19 +473,19 @@ class _LichenHubState extends State<LichenHub> {
           .collection('LichenHub_posts')
           .doc(post.id);
 
-      if(post.likedByUserIds.contains(user.uid)){
+      if (post.likedByUserIds.contains(user.uid)) {
         post.likedByUserIds.remove(user.uid);
-      }else{
+      } else {
         post.likedByUserIds.add(user.uid);
       }
 
       // Firebase update
       await postRef.update({
         'likes': post.likedByUserIds.length,
-        'likedByUserIds':  post.likedByUserIds ,
+        'likedByUserIds': post.likedByUserIds,
       });
       setState(() {
-        post.likes = post.likedByUserIds .length;
+        post.likes = post.likedByUserIds.length;
         post.isLiked = post.likedByUserIds.contains(user.uid);
       });
     } catch (e) {
@@ -528,7 +525,7 @@ class _LichenHubState extends State<LichenHub> {
       // Update the post document with the report
       await postRef.collection('reports').add(reportData);
       await postRef.update({
-        'lastTouch':DateTime.now().microsecondsSinceEpoch.toString(),
+        'lastTouch': DateTime.now().microsecondsSinceEpoch.toString(),
       });
     } catch (e) {
       debugPrint('Error reporting the post: $e');
@@ -1093,57 +1090,62 @@ class _LichenHubState extends State<LichenHub> {
                                   width: 40,
                                   child: Align(
                                     alignment: Alignment.centerRight,
-                                    child: (isLoading) 
-                                     ? const SpinKitRing(
-                                        color: Color(
-                                            0XFFF0784C),
-                                        size: 45.0,
-                                      ): InkWell(
-                                      onTap: () async {
-                                        if (reportFlags.isEmpty||isLoading) {
-                                          return;
-                                        }
-                            
-                                        // Get details from the text field
-                                        String details =
-                                            reportFieldController.text.trim();
-                                        setState((){
-                                          isLoading = true;
-                                        });
-                                        // Call the reportPost function
-                                        await reportPost(
-                                            post, reportFlags, details);
-                                        setState((){
-                                          isLoading = false;
-                                        });
-                                        await AwesomeDialog(
-                                          context: context,
-                                          dialogType: DialogType.warning,
-                                          animType: AnimType.topSlide,
-                                          title: 'Thank you for reportiing',
-                                          desc:
-                                              "We take your safety seriously and are investigating your submission in accordance with our Code of Conduct.",
-                                          descTextStyle: TextStyle(
-                                            fontSize: 16.0,
+                                    child: (isLoading)
+                                        ? const SpinKitRing(
+                                            color: Color(0XFFF0784C),
+                                            size: 45.0,
+                                          )
+                                        : InkWell(
+                                            onTap: () async {
+                                              if (reportFlags.isEmpty ||
+                                                  isLoading) {
+                                                return;
+                                              }
+
+                                              // Get details from the text field
+                                              String details =
+                                                  reportFieldController.text
+                                                      .trim();
+                                              setState(() {
+                                                isLoading = true;
+                                              });
+                                              // Call the reportPost function
+                                              await reportPost(
+                                                  post, reportFlags, details);
+                                              setState(() {
+                                                isLoading = false;
+                                              });
+                                              await AwesomeDialog(
+                                                      context: context,
+                                                      dialogType:
+                                                          DialogType.warning,
+                                                      animType:
+                                                          AnimType.topSlide,
+                                                      title:
+                                                          'Thank you for reportiing',
+                                                      desc:
+                                                          "We take your safety seriously and are investigating your submission in accordance with our Code of Conduct.",
+                                                      descTextStyle: TextStyle(
+                                                        fontSize: 16.0,
+                                                      ),
+                                                      padding:
+                                                          EdgeInsets.all(16.0),
+                                                      btnCancelText: "Close",
+                                                      btnCancelOnPress: () {})
+                                                  .show();
+
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: Transform.rotate(
+                                                angle: -3.14 / 5,
+                                                child: Icon(
+                                                  Icons.send,
+                                                  size: 24,
+                                                  color: (reportFlags.isEmpty)
+                                                      ? Colors.grey
+                                                      : primaryforegroundColor,
+                                                )),
                                           ),
-                                          padding: EdgeInsets.all(16.0),
-                                          btnCancelText: "Close",
-                                          btnCancelOnPress: (){}
-                                        ).show();
-                                      
-                                        Navigator.of(context).pop();
-                                        
-                                      },
-                                      child: Transform.rotate(
-                                          angle: -3.14 / 5,
-                                          child: Icon(
-                                            Icons.send,
-                                            size: 24,
-                                            color: (reportFlags.isEmpty)
-                                                ? Colors.grey
-                                                : primaryforegroundColor,
-                                          )),
-                                    ),
                                   ),
                                 ),
                               ],
@@ -1255,58 +1257,64 @@ class _LichenHubState extends State<LichenHub> {
           if (mounted) {postLoaded = true}
         });
     final user = FirebaseAuth.instance.currentUser!;
-    fireStoreListener =  FirebaseFirestore.instance
-      .collection('users')
-      .doc(user.uid)
-      .collection('LichenHub_posts')
-      .snapshots().listen((postsSnapshots) async {
-        int notifCount = 0;
-        if(mounted){
-          for(var postSnap in postsSnapshots.docs){
-            final postData = postSnap.data();
-            // track update of number of likes
-            if(postData['likedByUserIds'] != null){
-              if(postData['likedByUserIds'].contains(user.uid)){
-                notifCount += int.parse(postData['likedByUserIds'].length.toString())-1; 
-              }else{
-                notifCount += int.parse((postData['likedByUserIds']??[]).length.toString());
-              }
-            }else{
-              notifCount += int.parse((postData['likedByUserIds'] ?? []).length.toString());
+    fireStoreListener = FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .collection('LichenHub_posts')
+        .snapshots()
+        .listen((postsSnapshots) async {
+      int notifCount = 0;
+      if (mounted) {
+        for (var postSnap in postsSnapshots.docs) {
+          final postData = postSnap.data();
+          // track update of number of likes
+          if (postData['likedByUserIds'] != null) {
+            if (postData['likedByUserIds'].contains(user.uid)) {
+              notifCount +=
+                  int.parse(postData['likedByUserIds'].length.toString()) - 1;
+            } else {
+              notifCount += int.parse(
+                  (postData['likedByUserIds'] ?? []).length.toString());
             }
-            // track number of comments
-            final comments = await FirebaseFirestore.instance
-            .collection('users')
-            .doc(user.uid)
-            .collection('LichenHub_posts')
-            .doc(postSnap.id)
-            .collection('comments').get();
-            notifCount += (comments.docs.length<0) ? 0 : comments.docs.length;
+          } else {
+            notifCount +=
+                int.parse((postData['likedByUserIds'] ?? []).length.toString());
+          }
+          // track number of comments
+          final comments = await FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .collection('LichenHub_posts')
+              .doc(postSnap.id)
+              .collection('comments')
+              .get();
+          notifCount += (comments.docs.length < 0) ? 0 : comments.docs.length;
 
-            // track number of reports
-            final reports = await FirebaseFirestore.instance
-            .collection('users')
-            .doc(user.uid)
-            .collection('LichenHub_posts')
-            .doc(postSnap.id)
-            .collection('reports').get();
-            notifCount += (reports.docs.length<0)? 0 : reports.docs.length;
-          }
-          final prefs = await SharedPreferences.getInstance();
-          final previousBadgeCount = prefs.getInt('previousBadgeCount');
-          if(previousBadgeCount != null){
-            overallNotif = previousBadgeCount;
-          }
-          if(notifCount - overallNotif > notifBadge){
-            setState(() {
-              notifBadge = notifCount - overallNotif;
-            });
-          }else{
-            notifBadge = notifCount - overallNotif;
-          }          
-          overallNotif = notifCount;
+          // track number of reports
+          final reports = await FirebaseFirestore.instance
+              .collection('users')
+              .doc(user.uid)
+              .collection('LichenHub_posts')
+              .doc(postSnap.id)
+              .collection('reports')
+              .get();
+          notifCount += (reports.docs.length < 0) ? 0 : reports.docs.length;
         }
-      });
+        final prefs = await SharedPreferences.getInstance();
+        final previousBadgeCount = prefs.getInt('previousBadgeCount');
+        if (previousBadgeCount != null) {
+          overallNotif = previousBadgeCount;
+        }
+        if (notifCount - overallNotif > notifBadge) {
+          setState(() {
+            notifBadge = notifCount - overallNotif;
+          });
+        } else {
+          notifBadge = notifCount - overallNotif;
+        }
+        overallNotif = notifCount;
+      }
+    });
   }
 
   @override
@@ -1353,36 +1361,40 @@ class _LichenHubState extends State<LichenHub> {
                 child: InkWell(
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
-                  onTap: () async{
+                  onTap: () async {
                     final prefs = await SharedPreferences.getInstance();
                     await prefs.setInt('previousBadgeCount', overallNotif);
                     await Navigator.pushNamed(context, "/lichenNotif");
-                    if(mounted){
-                      setState((){
+                    if (mounted) {
+                      setState(() {
                         notifBadge = 0;
                       });
                     }
                   },
-                  child: (notifBadge<=0)? Icon(
-                      Icons.notifications,
-                      color: primaryforegroundColor,
-                    ): badges.Badge(
-                    position: badges.BadgePosition.topEnd(top: -10, end: -5),
-                    badgeStyle: badges.BadgeStyle(
-                      padding: EdgeInsets.all(5),
-                      borderRadius: BorderRadius.circular(4),
-                      borderSide: BorderSide(color: Colors.white, width: 1),
-                    ),
-                    badgeAnimation: badges.BadgeAnimation.fade(),
-                    badgeContent: Text(
-                      notifBadge.toString(),
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    child: Icon(
-                      Icons.notifications,
-                      color: primaryforegroundColor,
-                    ),
-                  ),
+                  child: (notifBadge <= 0)
+                      ? Icon(
+                          Icons.notifications,
+                          color: primaryforegroundColor,
+                        )
+                      : badges.Badge(
+                          position:
+                              badges.BadgePosition.topEnd(top: -10, end: -5),
+                          badgeStyle: badges.BadgeStyle(
+                            padding: EdgeInsets.all(5),
+                            borderRadius: BorderRadius.circular(4),
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 1),
+                          ),
+                          badgeAnimation: badges.BadgeAnimation.fade(),
+                          badgeContent: Text(
+                            notifBadge.toString(),
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          child: Icon(
+                            Icons.notifications,
+                            color: primaryforegroundColor,
+                          ),
+                        ),
                 ),
               ),
             ),
@@ -1553,7 +1565,7 @@ class _LichenHubState extends State<LichenHub> {
                                                                           copyPostContent(
                                                                               posts[index]),
                                                                       onLike:
-                                                                          () async{
+                                                                          () async {
                                                                         await likePost(
                                                                             posts[index]);
                                                                         setState(
@@ -1656,7 +1668,9 @@ class _LichenHubState extends State<LichenHub> {
                                                                         5.0),
                                                                 child:
                                                                     TextFormField(
-                                                                      onChanged: (value)=>setState((){}),
+                                                                  onChanged: (value) =>
+                                                                      setState(
+                                                                          () {}),
                                                                   controller:
                                                                       replyController,
                                                                   textInputAction:
@@ -1689,7 +1703,9 @@ class _LichenHubState extends State<LichenHub> {
                                                               : InkWell(
                                                                   onTap:
                                                                       () async {
-                                                                    if(replyController.text==''){
+                                                                    if (replyController
+                                                                            .text ==
+                                                                        '') {
                                                                       return;
                                                                     }
                                                                     if (isLoading) {
@@ -1731,8 +1747,11 @@ class _LichenHubState extends State<LichenHub> {
                                                                         child: Icon(
                                                                       Icons
                                                                           .send,
-                                                                      color:
-                                                                          (replyController.text == '')? Colors.grey: primaryforegroundColor,
+                                                                      color: (replyController.text ==
+                                                                              '')
+                                                                          ? Colors
+                                                                              .grey
+                                                                          : primaryforegroundColor,
                                                                       size: 32,
                                                                     )),
                                                                   ),
@@ -2126,30 +2145,36 @@ class PostBox extends StatelessWidget {
                                             )
                                           ],
                                         )),
-                                    (fromUser) ? const SizedBox() :TextButton(
-                                        style: TextButton.styleFrom(
-                                            shape: const RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(15.0)))),
-                                        onPressed: () {
-                                          onReport!();
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Icon(Icons.report,
-                                                size: 36,
-                                                color: primaryforegroundColor),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            const Text(
-                                              "Report a concern",
-                                              style: TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.black),
-                                            )
-                                          ],
-                                        )),
+                                    (fromUser)
+                                        ? const SizedBox()
+                                        : TextButton(
+                                            style: TextButton.styleFrom(
+                                                shape:
+                                                    const RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.all(
+                                                                Radius.circular(
+                                                                    15.0)))),
+                                            onPressed: () {
+                                              onReport!();
+                                            },
+                                            child: Row(
+                                              children: [
+                                                Icon(Icons.report,
+                                                    size: 36,
+                                                    color:
+                                                        primaryforegroundColor),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
+                                                const Text(
+                                                  "Report a concern",
+                                                  style: TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.black),
+                                                )
+                                              ],
+                                            )),
                                   ]),
                                 ),
                               );
@@ -2158,17 +2183,17 @@ class PostBox extends StatelessWidget {
                       child: Row(children: [
                         Icon(
                           Icons.circle,
-                          size: 10,
+                          size: 15,
                           color: primaryforegroundColor,
                         ),
                         Icon(
                           Icons.circle,
-                          size: 10,
+                          size: 15,
                           color: primaryforegroundColor,
                         ),
                         Icon(
                           Icons.circle,
-                          size: 10,
+                          size: 15,
                           color: primaryforegroundColor,
                         ),
                       ]),

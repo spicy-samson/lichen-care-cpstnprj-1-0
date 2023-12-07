@@ -35,223 +35,710 @@ class _LichenPediaVaultState extends State<LichenPediaVault> {
       ),
 
       // Body
-      body: Container(
-        height: double.infinity,
-        child: Center(
-          child: Column(
-            children: [
-              const Text(
-                'Video Vault',
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w900,
-                    fontFamily: 'ABeeZee',
-                    fontStyle: FontStyle.italic),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Text(
+              'Video Vault',
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w900,
+                fontFamily: 'ABeeZee',
+                fontStyle: FontStyle.italic,
               ),
-              const SizedBox(height: 25),
-              GestureDetector(
-                onTap: () {
-                  launchUrlString(
-                      'https://www.youtube.com/watch?v=Jm6RvAuIhEw');
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset('assets/imgs/videovault_1.jpg'),
-                      const Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      'Lichen planus - causes, symptoms, diagnosis, treatment, pathology',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w300,
-                                      ),
+            ),
+            const SizedBox(height: 25),
+            GestureDetector(
+              onTap: () {
+                launchUrlString('https://www.youtube.com/watch?v=zvAIGEk24so');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/imgs/videovault_12.jpg',
+                      width: 150,
+                      height: 84,
+                    ),
+                    const Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Lichen Planus (“Purple Skin Lesions”) | Causes....',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
                                     ),
                                   ),
-                                ],
-                              ),
-                              SizedBox(height: 15),
-                              Text(
-                                'Youtube - Osmosis from Elsevier',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w100,
                                 ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Text(
+                              'JJ Medicine',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w100,
                               ),
-                              Text(
-                                'January 17, 2019',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w100,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                            Text(
+                              'December 3, 2021',
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.w100),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 25),
-              GestureDetector(
-                onTap: () {
-                  launchUrlString(
-                      'https://www.youtube.com/watch?v=zvAIGEk24so');
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/imgs/videovault_2.jpg',
-                        // Adjust the height as needed
-                      ),
-                      const Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      'Lichen planus - Daily Do\'s of Dermatology',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w300,
-                                      ),
+            ),
+            const SizedBox(height: 25),
+            GestureDetector(
+              onTap: () {
+                launchUrlString('https://www.youtube.com/watch?v=zvAIGEk24so');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/imgs/videovault_11.jpg',
+                      width: 150,
+                      height: 84,
+                    ),
+                    const Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Purplish bumps on skin - Causes & Treatment | Lic...",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
                                     ),
                                   ),
-                                ],
-                              ),
-                              SizedBox(height: 15),
-                              Text(
-                                'Youtube - Doctorpedia',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w100,
                                 ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Text(
+                              "Doctors' Circle World's Largest Health Platform",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w100,
                               ),
-                              Text(
-                                'July 5, 2019',
-                                style: TextStyle(
-                                    fontSize: 10, fontWeight: FontWeight.w100),
-                              ),
-                            ],
-                          ),
+                            ),
+                            Text(
+                              'March 5, 2020',
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.w100),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 25),
-              GestureDetector(
-                onTap: () {
-                  launchUrlString(
-                      'https://www.youtube.com/watch?v=G_wIaActuB0');
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/imgs/videovault_3.jpg',
-                      ),
-                      const Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(left: 10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      'Lichen Planus Webcast with Dr. James Sciubba',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w300,
-                                      ),
+            ),
+            const SizedBox(height: 25),
+            GestureDetector(
+              onTap: () {
+                launchUrlString('https://www.youtube.com/watch?v=si_Eu3vQ04g');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/imgs/videovault_6.jpg',
+                      width: 150,
+                      height: 84,
+                    ),
+                    const Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Lichen sclerosus: what causes a flare up and how is it tre...",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
                                     ),
                                   ),
-                                ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Text(
+                              "Top Doctors UK",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w100,
                               ),
-                              SizedBox(height: 15),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      'Youtube - Texas A&M College of Dentistry',
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w100,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                'October 21, 2016',
-                                style: TextStyle(
-                                    fontSize: 10, fontWeight: FontWeight.w100),
-                              ),
-                            ],
-                          ),
+                            ),
+                            Text(
+                              'August 25, 2021',
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.w100),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              const Spacer(),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                style: ButtonStyle(
-                  padding: MaterialStateProperty.all<EdgeInsets>(
-                    EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 22 * scaleFactor),
-                  ),
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(const Color(0xFFFF7F50)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                      side: const BorderSide(
-                          color: Colors.white,
-                          width: 2.0), // Add the white border here
+            ),
+            const SizedBox(height: 25),
+            GestureDetector(
+              onTap: () {
+                launchUrlString(
+                    'https://youtu.be/WAhVacT-3ms?si=6MfKZlguXHAJqPAc');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/imgs/videovault_9.jpg',
+                      width: 150,
+                      height: 84,
+                    ),
+                    const Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Unlocking the Mystery of Lichen Planus : Everything You Need to Know",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Text(
+                              "Medical Clinic",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w100,
+                              ),
+                            ),
+                            Text(
+                              'May 17, 2023',
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.w100),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 25),
+            GestureDetector(
+              onTap: () {
+                launchUrlString('https://www.youtube.com/watch?v=fwr9wzVWUJ0');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/imgs/videovault_8.jpg',
+                      width: 150,
+                      height: 84,
+                    ),
+                    const Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Lichen Planus - Burning Mouth Symptoms | Causes | Treatment",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Text(
+                              "Joseph R Nemeth DDS",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w100,
+                              ),
+                            ),
+                            Text(
+                              'August 11, 2018',
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.w100),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 25),
+            GestureDetector(
+              onTap: () {
+                launchUrlString('https://www.youtube.com/watch?v=2jxIkaVHGsw');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/imgs/videovault_7.jpg',
+                      width: 150,
+                      height: 84,
+                    ),
+                    const Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "A challenging case of lichen planus",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Text(
+                              "MDEdge: news and insights for busy physicians",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w100,
+                              ),
+                            ),
+                            Text(
+                              'June 6, 2018',
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.w100),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 25),
+            GestureDetector(
+              onTap: () {
+                launchUrlString('https://www.youtube.com/watch?v=8rmyR1czvag');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/imgs/videovault_5.jpg',
+                      width: 150,
+                      height: 84,
+                    ),
+                    const Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Top 5 Things to Know about Lichen Planus - ...",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Text(
+                              "Doctors' Circle World's Largest Health Platform",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w100,
+                              ),
+                            ),
+                            Text(
+                              'June 25, 2020',
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.w100),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 25),
+            GestureDetector(
+              onTap: () {
+                launchUrlString('https://www.youtube.com/watch?v=WVl6Dhdfuc4');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/imgs/videovault_4.jpg',
+                      width: 150,
+                      height: 84,
+                    ),
+                    const Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Clinical variants of lichen planus",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Text(
+                              "Dermatology Explained",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w100,
+                              ),
+                            ),
+                            Text(
+                              'January 4, 2023',
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.w100),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 25),
+            GestureDetector(
+              onTap: () {
+                launchUrlString('https://www.youtube.com/watch?v=tRYyDAr2Bsc');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/imgs/videovault_10.jpg',
+                      width: 150,
+                      height: 84,
+                    ),
+                    const Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "What is LPP (Lichen planus pigmentosus) | Dr Rohit Batra | Dr Aishwarya Dua",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Text(
+                              "Dermaworld Skin & Hair Clinics",
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w100,
+                              ),
+                            ),
+                            Text(
+                              'July 31, 2023',
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.w100),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 25),
+            GestureDetector(
+              onTap: () {
+                launchUrlString('https://www.youtube.com/watch?v=Jm6RvAuIhEw');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset('assets/imgs/videovault_1.jpg'),
+                    const Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Lichen planus - causes, symptoms, diagnosis, .....',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Text(
+                              'Youtube - Osmosis from Elsevier',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w100,
+                              ),
+                            ),
+                            Text(
+                              'January 17, 2019',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w100,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 25),
+            GestureDetector(
+              onTap: () {
+                launchUrlString('https://www.youtube.com/watch?v=zvAIGEk24so');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/imgs/videovault_2.jpg',
+                      // Adjust the height as needed
+                    ),
+                    const Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Lichen planus - Daily Do\'s of Dermatology',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Text(
+                              'Youtube - Doctorpedia',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w100,
+                              ),
+                            ),
+                            Text(
+                              'July 5, 2019',
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.w100),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 25),
+            GestureDetector(
+              onTap: () {
+                launchUrlString('https://www.youtube.com/watch?v=zvAIGEk24so');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/imgs/videovault_3.jpg',
+                      // Adjust the height as needed
+                    ),
+                    const Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    'Lichen Planus Webcast with Dr. James Sciubba',
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 15),
+                            Text(
+                              'Youtube - Texas A&M College of Dentistry',
+                              style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w100,
+                              ),
+                            ),
+                            Text(
+                              'October 21, 2016',
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.w100),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 25),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all<EdgeInsets>(
+                  EdgeInsets.symmetric(
+                      horizontal: 20, vertical: 22 * scaleFactor),
+                ),
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(const Color(0xFFFF7F50)),
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    side: const BorderSide(
+                      color: Colors.white,
+                      width: 2.0,
                     ),
                   ),
                 ),
-                child: const Text(
-                  'Go back',
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.white,
-                  ),
-                  textAlign: TextAlign.center,
+              ),
+              child: const Text(
+                'Go back',
+                style: TextStyle(
+                  fontSize: 15.0,
+                  color: Colors.white,
                 ),
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(
-                height: 50,
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+          ],
         ),
       ),
 

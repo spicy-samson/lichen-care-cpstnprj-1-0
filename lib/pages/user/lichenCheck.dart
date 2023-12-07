@@ -189,11 +189,12 @@ class _LichenCheckState extends State<LichenCheck> {
     // Storage permission
     if (source == ImageSource.gallery) {
       var storageStatus = await Permission.storage.status;
+      debugPrint("Storage Status: $storageStatus");
       if (!storageStatus.isGranted) {
         // Request storage permission
         storageStatus = await Permission.storage.request();
         if (!storageStatus.isGranted) {
-          // Permission denied
+          
           return;
         }
       }

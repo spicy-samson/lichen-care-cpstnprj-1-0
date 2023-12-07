@@ -78,107 +78,119 @@ class _AccountState extends State<Account> {
                                     userData['firstName'] ?? '';
                                 String newLastName = userData['lastName'] ?? '';
 
-                                return StatefulBuilder(builder: ((context, setState) {
-                                      return AlertDialog(
-                                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                                      title: const Text('Edit Profile'),
-                                      content: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          TextFormField(
-                                            initialValue: newFirstName,
-                                            onChanged: (value) {
-                                              newFirstName = value;
-                                            },
-                                            decoration: InputDecoration(
-                                              labelText: 'First Name',
-                                              focusedBorder: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                                borderSide: const BorderSide(
-                                                  color: Color(0xFFFF7F50),
-                                                ),
+                                return StatefulBuilder(
+                                    builder: ((context, setState) {
+                                  return AlertDialog(
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(15.0))),
+                                    title: const Text('Edit Profile'),
+                                    content: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        TextFormField(
+                                          initialValue: newFirstName,
+                                          onChanged: (value) {
+                                            newFirstName = value;
+                                          },
+                                          decoration: InputDecoration(
+                                            labelText: 'First Name',
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              borderSide: const BorderSide(
+                                                color: Color(0xFFFF7F50),
                                               ),
                                             ),
                                           ),
-                                          const SizedBox(height: 10),
-                                          TextFormField(
-                                            initialValue: newLastName,
-                                            onChanged: (value) {
-                                              newLastName = value;
-                                            },
-                                            decoration: InputDecoration(
-                                              labelText: 'Last Name',
-                                              focusedBorder: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10.0),
-                                                borderSide: const BorderSide(
-                                                  color: Color(0xFFFF7F50),
-                                                ),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        TextFormField(
+                                          initialValue: newLastName,
+                                          onChanged: (value) {
+                                            newLastName = value;
+                                          },
+                                          decoration: InputDecoration(
+                                            labelText: 'Last Name',
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              borderSide: const BorderSide(
+                                                color: Color(0xFFFF7F50),
                                               ),
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                      actions: [
-                                         SizedBox(
-                                          height: 40,
-                                          width: 80,
-                                           child: ElevatedButton(
-                                            onPressed: () async {
-                                              if(_isLoading){
-                                                return;
-                                              }
-                                              try {
-                                                // Close the dialog and update the profile
-                                                setState(() {
-                                                  _isLoading = true;
-                                                });
-                                         
-                                                await updateProfile(
-                                                    newFirstName, newLastName);
-                                         
-                                                // Reset loading state
-                                                setState(() {
-                                                  _isLoading = false;
-                                                });
-                                              } catch (e) {
-                                                // Handle errors if needed
-                                                debugPrint(
-                                                    'Error updating profile: $e');
-                                                setState(() {
-                                                  _isLoading = false;
-                                                });
-                                                Navigator.of(context).pop();
-                                              }
-                                            },
-                                            style: ButtonStyle(
-                                              padding: MaterialStateProperty.all<
-                                                  EdgeInsets>(
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 20, vertical: 10),
-                                              ),
-                                              backgroundColor:
-                                                  MaterialStateProperty.all<Color>(
-                                                      primaryforegroundColor),
-                                              shape: MaterialStateProperty.all<
-                                                  RoundedRectangleBorder>(
-                                                RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10.0),
-                                                  side: const BorderSide(
-                                                      color: Colors.white,
-                                                      width: 2.0),
-                                                ),
-                                              ),
-                                            ),
-                                            child: (_isLoading) ? const FittedBox(child:   SpinKitRing(color: Colors.white, size: 20, lineWidth: 2.0,) ,): const Text(
-                                                    'Save',
-                                                  ),
-                                                                                 ),
-                                         ),
+                                        ),
                                       ],
-                                    );
+                                    ),
+                                    actions: [
+                                      SizedBox(
+                                        height: 40,
+                                        width: 80,
+                                        child: ElevatedButton(
+                                          onPressed: () async {
+                                            if (_isLoading) {
+                                              return;
+                                            }
+                                            try {
+                                              // Close the dialog and update the profile
+                                              setState(() {
+                                                _isLoading = true;
+                                              });
+
+                                              await updateProfile(
+                                                  newFirstName, newLastName);
+
+                                              // Reset loading state
+                                              setState(() {
+                                                _isLoading = false;
+                                              });
+                                            } catch (e) {
+                                              // Handle errors if needed
+                                              debugPrint(
+                                                  'Error updating profile: $e');
+                                              setState(() {
+                                                _isLoading = false;
+                                              });
+                                              Navigator.of(context).pop();
+                                            }
+                                          },
+                                          style: ButtonStyle(
+                                            padding: MaterialStateProperty.all<
+                                                EdgeInsets>(
+                                              const EdgeInsets.symmetric(
+                                                  horizontal: 20, vertical: 10),
+                                            ),
+                                            backgroundColor:
+                                                MaterialStateProperty.all<
+                                                        Color>(
+                                                    primaryforegroundColor),
+                                            shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10.0),
+                                                side: const BorderSide(
+                                                    color: Colors.white,
+                                                    width: 2.0),
+                                              ),
+                                            ),
+                                          ),
+                                          child: (_isLoading)
+                                              ? const FittedBox(
+                                                  child: SpinKitRing(
+                                                    color: Colors.white,
+                                                    size: 20,
+                                                    lineWidth: 2.0,
+                                                  ),
+                                                )
+                                              : const Text(
+                                                  'Save',
+                                                ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
                                 }));
                               },
                             );
@@ -474,7 +486,7 @@ class _AccountState extends State<Account> {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pop(); // Close the dialog
-                      DeleteAccount(password);
+                      deleteAccount(password);
                     },
                     child: const Text(
                       "Delete",
@@ -544,8 +556,7 @@ class _AccountState extends State<Account> {
     }
   }
 
-  // Function to DELETE the user's acc
-  Future<void> DeleteAccount(String password) async {
+  Future<void> deleteAccount(String password) async {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user == null) {
@@ -564,21 +575,32 @@ class _AccountState extends State<Account> {
       await user.reauthenticateWithCredential(credential);
       await user.delete();
 
+      // Get a reference to the user's document in Firestore
       final userDocRef =
           FirebaseFirestore.instance.collection('users').doc(user.uid);
 
-      // Delete the specific document in Firestore
+      // Get references to subcollections
+      final lichenCheckInputsCollection =
+          userDocRef.collection('LichenCheck_inputs');
+      final lichenHubPostsCollection = userDocRef.collection('LichenHub_posts');
+      final feedBackCollection = userDocRef.collection('feedback');
+
+      // Delete documents within subcollections
+      await _deleteCollection(lichenCheckInputsCollection);
+      await _deleteCollection(lichenHubPostsCollection);
+      await _deleteCollection(feedBackCollection);
+
+      // Delete comments, reports, and likes on user's posts
+      await _deleteCommentsReportsLikesOnUserPosts(user.uid);
+
+      // Delete comments and reports made by the user
+      await _deleteCommentsAndReports(user.uid);
+
+      // Delete the user's document
       await userDocRef.delete();
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.remove('loginEmail');
-
-      // Delete user's folder in Firebase Storage - TO FIX
-      // final storageRef = FirebaseStorage.instance
-      //     .ref()
-      //     .child('lichencheck_images/${user.uid}');
-
-      // await storageRef.delete();
 
       AwesomeDialog(
         context: context,
@@ -586,14 +608,13 @@ class _AccountState extends State<Account> {
         animType: AnimType.topSlide,
         title: 'Account deleted.',
         desc:
-            "Thank you for your using our App! Hopefully you'll come back soon! 🤗",
+            "Thank you for using our App! Hopefully you'll come back soon! 🤗",
         descTextStyle: const TextStyle(
           fontSize: 16.0,
         ),
         padding: const EdgeInsets.all(16.0),
         btnOkOnPress: () {
           Navigator.of(context).pushNamed('/login');
-          ; // Navigate to the login page
         },
       ).show();
 
@@ -602,4 +623,70 @@ class _AccountState extends State<Account> {
       debugPrint("Error during reauthentication or account deletion: $e");
     }
   }
+
+  // Helper function to delete comments, reports, and likes on user's posts
+    Future<void> _deleteCommentsReportsLikesOnUserPosts(String userId) async {
+        try {
+          final userPostsCollection = FirebaseFirestore.instance
+              .collection('users')
+              .doc(userId)
+              .collection('LichenHub_posts');
+          final userPosts = await userPostsCollection.get();
+
+          for (QueryDocumentSnapshot postSnapshot in userPosts.docs) {
+            final postId = postSnapshot.id;
+
+            // Delete comments
+            final commentsRef =
+                userPostsCollection.doc(postId).collection('comments');
+            await _deleteCollection(commentsRef);
+
+            // Delete reports
+            final reportsRef =
+                userPostsCollection.doc(postId).collection('reports');
+            await _deleteCollection(reportsRef);
+
+            // Delete likes
+            final likesRef = userPostsCollection.doc(postId).collection('likes');
+            await _deleteCollection(likesRef);
+          }
+        } catch (e) {
+          debugPrint(
+              "Error deleting comments, reports, and likes on user's posts: $e");
+        }
+      }
+
+  // Helper function to delete comments and reports made by the user
+    Future<void> _deleteCommentsAndReports(String userId) async {
+      try {
+        // Delete user's comments
+        final userCommentsCollection = FirebaseFirestore.instance
+            .collection('comments')
+            .where('senderID', isEqualTo: userId);
+        QuerySnapshot userCommentsSnapshot = await userCommentsCollection.get();
+        for (QueryDocumentSnapshot commentSnapshot in userCommentsSnapshot.docs) {
+          await commentSnapshot.reference.delete();
+        }
+
+        // Delete user's reports
+        final userReportsCollection = FirebaseFirestore.instance
+            .collection('reports')
+            .where('reporterUserID', isEqualTo: userId);
+        QuerySnapshot userReportsSnapshot = await userReportsCollection.get();
+        for (QueryDocumentSnapshot reportSnapshot in userReportsSnapshot.docs) {
+          await reportSnapshot.reference.delete();
+        }
+      } catch (e) {
+        debugPrint("Error deleting comments and reports made by the user: $e");
+      }
+    }
+
+  // Helper function to delete all documents in a collection
+    Future<void> _deleteCollection(
+        CollectionReference collectionReference) async {
+      QuerySnapshot querySnapshot = await collectionReference.get();
+      for (QueryDocumentSnapshot docSnapshot in querySnapshot.docs) {
+        await docSnapshot.reference.delete();
+      }
+    }
 }
