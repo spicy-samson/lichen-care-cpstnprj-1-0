@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
-import 'package:lichen_care/pages/user/lichenHub.dart';
+import 'package:lichen_care/helpers/helpers.dart';
 
 class LichenNotif extends StatefulWidget {
   @override
@@ -268,79 +268,120 @@ class _LichenNotifState extends State<LichenNotif> {
                                     return const Text('Error loading likes');
                                   } else {
                                     List<Widget> likedUserIds = [];
-                                    for (var usersLiked
+                                    for (var likerUID
                                         in post['likedByUserIds'] ?? []) {
-                                      likedUserIds.add(Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 5, right: 5),
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            // Handle onTap for each like
-                                          },
-                                          child: Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                vertical: 8),
-                                            padding: const EdgeInsets.all(16),
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey[100],
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                            ),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                const Icon(
-                                                  Icons.thumb_up,
-                                                  size: 30,
-                                                  color: Colors.green,
-                                                ),
-                                                const SizedBox(width: 16),
-                                                Expanded(
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      RichText(
-                                                        text: TextSpan(
-                                                          style: const TextStyle(
-                                                              fontFamily:
-                                                                  'ABeeZee'),
-                                                          children: [
-                                                            const TextSpan(
-                                                              text:
-                                                                  "A user liked your post",
-                                                              style: TextStyle(
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                  color: Colors
-                                                                      .black),
-                                                            ),
-                                                            TextSpan(
-                                                              text:
-                                                                  " ${post['title']}",
-                                                              style: const TextStyle(
-                                                                  fontSize: 14,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
-                                                                  color: Colors
-                                                                      .black),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
+                                      likedUserIds.add(
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 5, right: 5),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              // Handle onTap for each like
+                                            },
+                                            child: Container(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 8),
+                                              padding: const EdgeInsets.all(16),
+                                              decoration: BoxDecoration(
+                                                color: Colors.grey[100],
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  const Icon(
+                                                    Icons.thumb_up,
+                                                    size: 30,
+                                                    color: Colors.green,
                                                   ),
-                                                ),
-                                              ],
+                                                  const SizedBox(width: 16),
+                                                  Expanded(
+                                                    child: FutureBuilder<
+                                                        DocumentSnapshot>(
+                                                      future: FirebaseFirestore
+                                                          .instance
+                                                          .collection('users')
+                                                          .doc(likerUID)
+                                                          .get(),
+                                                      builder: (BuildContext
+                                                              context,
+                                                          AsyncSnapshot<
+                                                                  DocumentSnapshot>
+                                                              userSnapshot) {
+                                                        if (userSnapshot
+                                                                .connectionState ==
+                                                            ConnectionState
+                                                                .waiting) {
+                                                          return const CircularProgressIndicator();
+                                                        } else if (userSnapshot
+                                                            .hasError) {
+                                                          return const Text(
+                                                              'Error loading user');
+                                                        } else {
+                                                          // Get the first name from the user document
+                                                          String firstName =
+                                                              makeAnonymous(
+                                                                  userSnapshot
+                                                                          .data![
+                                                                      'first_name']);
+
+                                                          return Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              RichText(
+                                                                text: TextSpan(
+                                                                  style:
+                                                                      const TextStyle(
+                                                                    fontFamily:
+                                                                        'ABeeZee',
+                                                                  ),
+                                                                  children: [
+                                                                    TextSpan(
+                                                                      text:
+                                                                          "$firstName liked your post",
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontSize:
+                                                                            14,
+                                                                        fontWeight:
+                                                                            FontWeight.normal,
+                                                                        color: Colors
+                                                                            .black,
+                                                                      ),
+                                                                    ),
+                                                                    TextSpan(
+                                                                      text:
+                                                                          " ${post['title']}",
+                                                                      style:
+                                                                          const TextStyle(
+                                                                        fontSize:
+                                                                            14,
+                                                                        fontWeight:
+                                                                            FontWeight.w700,
+                                                                        color: Colors
+                                                                            .black,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        }
+                                                      },
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ));
+                                      );
                                     }
                                     return Column(
                                       children: likedUserIds,
@@ -370,9 +411,10 @@ class _LichenNotifState extends State<LichenNotif> {
                                     List<Widget> reportWidgets = [];
                                     for (var reportDoc
                                         in reportsSnapshot.data!.docs) {
-                                      var report = reportDoc.data()  
-                                        as Map<String, dynamic>?;
-                                      if (report == null || report['timestamp'] == null) {
+                                      var report = reportDoc.data()
+                                          as Map<String, dynamic>?;
+                                      if (report == null ||
+                                          report['timestamp'] == null) {
                                         continue;
                                       }
                                       reportWidgets.add(

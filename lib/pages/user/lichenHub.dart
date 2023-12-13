@@ -460,7 +460,7 @@ class _LichenHubState extends State<LichenHub> {
     }
   }
 
-  Future<void> likePost(Post post) async {
+Future<void> likePost(Post post) async {
     try {
       User? user = auth.currentUser;
       if (user == null) {
@@ -484,6 +484,8 @@ class _LichenHubState extends State<LichenHub> {
         'likes': post.likedByUserIds.length,
         'likedByUserIds': post.likedByUserIds,
       });
+
+      // UI update
       setState(() {
         post.likes = post.likedByUserIds.length;
         post.isLiked = post.likedByUserIds.contains(user.uid);
@@ -492,6 +494,7 @@ class _LichenHubState extends State<LichenHub> {
       debugPrint('Error liking the post: $e');
     }
   }
+
 
   Future<void> reportPost(
       Post post, List<int> reportFlags, String details) async {
