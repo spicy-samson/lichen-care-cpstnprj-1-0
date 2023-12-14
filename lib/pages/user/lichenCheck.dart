@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:country_picker/country_picker.dart';
@@ -16,6 +17,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:lichen_care/processes/classifier.dart';
 import 'package:lichen_care/processes/recognitions.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:lichen_care/helpers/helpers.dart';
 
 class LichenCheck extends StatefulWidget {
   LichenCheck({super.key});
@@ -27,6 +29,16 @@ class LichenCheck extends StatefulWidget {
 class _LichenCheckState extends State<LichenCheck> {
   final _currentIndex = 2;
   bool navigatorHidden = false;
+
+  Color primaryBackgroundColor = const Color(0xFFFFF4E9);
+  Color primaryforegroundColor = const Color(0xFFFF7F50);
+  Color secondaryForegroundColor = const Color(0xFF66D7D1);
+  Color termaryForegroundColor = const Color.fromARGB(255, 231, 231, 240);
+
+  String? lastEntry;
+
+  TextEditingController feedbackComment = TextEditingController();
+
   List<String> ethnicities = [
     "African",
     "Asian (Central)",
@@ -57,13 +69,29 @@ class _LichenCheckState extends State<LichenCheck> {
   int currentPIPage = 0;
   Classifier? classifier;
 
-  Color primaryBackgroundColor = const Color(0xFFFFF4E9);
-  Color primaryforegroundColor = const Color(0xFFFF7F50);
-  Color secondaryForegroundColor = const Color(0xFF66D7D1);
   Color errorColor = Colors.red;
 
   FirebaseAuth auth = FirebaseAuth.instance;
   final storage = FirebaseStorage.instance;
+
+  Future<void> reportForMisdiagnosis() async {
+    final user = auth.currentUser;
+
+    if (user == null) {
+      return; // No user is logged in, exit the function
+    }
+
+    final userDocRef =
+        FirebaseFirestore.instance.collection('users').doc(user.uid);
+    final userSnapshot = await userDocRef.get();
+
+    if (userSnapshot.exists) {
+      final lastDoc =
+          userDocRef.collection('LichenCheck_inputs').doc(lastEntry);
+      await lastDoc.update(
+          {'reported_for_review': true, 'feedback': feedbackComment.text});
+    }
+  }
 
   Future<void> pushPatientEntry() async {
     final user = auth.currentUser;
@@ -110,7 +138,10 @@ class _LichenCheckState extends State<LichenCheck> {
                 'file_image': imageUrl, // Store the image URL
                 'date_uploaded': timestamp, // Add the date uploaded field
               },
+              'reported_for_review': false,
+              'feedback': null,
             });
+            lastEntry = newInputDocRef.id;
           } else {
             debugPrint('Error uploading the image to Firebase Storage');
           }
@@ -131,6 +162,7 @@ class _LichenCheckState extends State<LichenCheck> {
     formCompleted = false;
     currentPIPage = 0;
     patientInformation.reset();
+    lastEntry = null;
   }
 
   @override
@@ -194,7 +226,6 @@ class _LichenCheckState extends State<LichenCheck> {
         // Request storage permission
         storageStatus = await Permission.storage.request();
         if (!storageStatus.isGranted) {
-          
           return;
         }
       }
@@ -223,7 +254,7 @@ class _LichenCheckState extends State<LichenCheck> {
             automaticallyImplyLeading: false,
             backgroundColor: Color(0xFFFFF4E9),
             title: Padding(
-              padding: EdgeInsets.only(top: h * 0.02, right: w * 0.42),
+              padding: EdgeInsets.only(top: h * 0.02, right: w * 0.25),
               child: SvgPicture.asset(
                 'assets/svgs/#1 - lichencheck.svg',
                 width: w * 0.1,
@@ -232,6 +263,109 @@ class _LichenCheckState extends State<LichenCheck> {
             ),
             elevation: 0,
             toolbarHeight: 60.0,
+            actions: [
+              SizedBox(
+                height: 70,
+                width: 80,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: h * 0.02,
+                    bottom: h * 0.01,
+                  ),
+                  child: FittedBox(
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        feedbackComment.text = "";
+                        await AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.error,
+                          animType: AnimType.scale,
+                          body: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              richText('Do you think this is a misdiagnosis?',
+                                  fontSize: 20,
+                                  textAlign: TextAlign.center,
+                                  fontWeight: FontWeight.bold),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              richText(
+                                  'Your feedback is highly appreciated to further improve our application.',
+                                  fontSize: 15,
+                                  textAlign: TextAlign.center),
+                              const SizedBox(
+                                height: 25,
+                              ),
+                              TextFormField(
+                                  maxLines: 3,
+                                  controller: feedbackComment,
+                                  decoration: InputDecoration(
+                                    focusColor: primaryforegroundColor,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        horizontal: 15.0, vertical: 15.0),
+                                    hintText: "Tell us your thoughts ... ",
+                                    hintStyle: TextStyle(
+                                        color: Colors.grey.shade400,
+                                        fontSize: 15.0),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(15.0)),
+                                    ),
+                                  )),
+                            ],
+                          ),
+                          padding: EdgeInsets.all(16.0),
+                          btnCancelText: "No",
+                          btnCancelOnPress: () {},
+                          btnOkText: "Yes",
+                          btnOkOnPress: () async {
+                            await AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.warning,
+                              animType: AnimType.scale,
+                              title: 'Sharing your results',
+                              desc:
+                                  "By agreeing, we are allowed to review and use this result for further development, including your photo. Continue?",
+                              descTextStyle: TextStyle(
+                                fontSize: 16.0,
+                              ),
+                              padding: EdgeInsets.all(16.0),
+                              btnCancelText: "I Disagree",
+                              btnCancelOnPress: () {},
+                              btnOkText: "I Agree",
+                              btnOkOnPress: () async {
+                                await reportForMisdiagnosis();
+                                await AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.success,
+                                  animType: AnimType.scale,
+                                  title: 'Thank you for sharing your feedback!',
+                                  descTextStyle: TextStyle(
+                                    fontSize: 16.0,
+                                  ),
+                                  padding: EdgeInsets.all(16.0),
+                                  btnCancelText: "Close",
+                                  btnCancelOnPress: () {},
+                                ).show();
+                              },
+                            ).show();
+                          },
+                        ).show();
+                      },
+                      child: (hasImage && formCompleted && !pushingData)
+                          ? Icon(
+                              Icons.report_rounded,
+                              color: Colors.red,
+                            )
+                          : const SizedBox(),
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
 
           // Body
@@ -661,6 +795,7 @@ class _LichenCheckState extends State<LichenCheck> {
   @override
   void dispose() {
     super.dispose();
+    feedbackComment.dispose();
   }
 
   // result widget
@@ -916,20 +1051,53 @@ class _LichenCheckState extends State<LichenCheck> {
           const SizedBox(
             height: 10,
           ),
+          Container(
+            width: 220,
+            height: 220,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    alignment: Alignment.center,
+                    image: FileImage(patientInformation.image!),
+                    fit: BoxFit.fill)),
+          ),
           Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: SvgPicture.asset(
-              'assets/svgs/nodetections_image.svg',
-              width: 200,
-              height: 200,
+            padding: const EdgeInsets.only(top: 15.0, bottom: 5.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Confidence Score:",
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(
+                  width: 5.0,
+                ),
+                Text(
+                  "N/A",
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black87,
+                  ),
+                ),
+              ],
             ),
           ),
-          Center(
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 3, horizontal: 6),
             child: Text(
-              "LICHEN PLANUS NOT DETECTED",
-              style: TextStyle(fontSize: 22),
+              "NO DETECTIONS",
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.0,
+                color: Color.fromARGB(255, 126, 64, 7),
+              ),
             ),
-          )
+          ),
         ],
       );
     }
@@ -1015,34 +1183,39 @@ class _LichenCheckState extends State<LichenCheck> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 10.0 * scaleFactor, bottom: 0),
+            padding: EdgeInsets.only(
+                top: 10.0 * scaleFactor, bottom: 5 * scaleFactor),
             child: const Text(
               "Age",
               style: TextStyle(fontSize: 18.0),
             ),
           ),
-          TextFormField(
-            onChanged: (value) => setState(() {
-              patientInformation.age = int.parse(value);
-            }),
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly
-            ],
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-                hintText: "Enter your age",
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10.0)))),
+          SizedBox(
+            height: 50,
+            child: TextFormField(
+              onChanged: (value) => setState(() {
+                patientInformation.age = int.parse(value);
+              }),
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly
+              ],
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                  hintText: "Enter your age",
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)))),
+            ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 10.0 * scaleFactor, bottom: 0),
+            padding: EdgeInsets.only(
+                top: 10.0 * scaleFactor, bottom: 5 * scaleFactor),
             child: const Text(
               "Country",
               style: TextStyle(fontSize: 18.0),
             ),
           ),
           SizedBox(
-              height: 40,
+              height: 50,
               width: double.infinity,
               child: TextButton(
                   style: TextButton.styleFrom(
@@ -1082,14 +1255,15 @@ class _LichenCheckState extends State<LichenCheck> {
                     ],
                   ))),
           Padding(
-            padding: EdgeInsets.only(top: 10.0 * scaleFactor, bottom: 0),
+            padding: EdgeInsets.only(
+                top: 10.0 * scaleFactor, bottom: 5 * scaleFactor),
             child: const Text(
               "Ethnicity",
               style: TextStyle(fontSize: 18.0),
             ),
           ),
           SizedBox(
-              height: 40,
+              height: 50,
               width: double.infinity,
               child: TextButton(
                   style: TextButton.styleFrom(

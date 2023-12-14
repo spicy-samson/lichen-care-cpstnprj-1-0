@@ -229,7 +229,6 @@ class _ScanHistory extends State<ScanHistory> {
                                 ),
                               );
                             } else {
-
                               return Container();
                             }
                           },
