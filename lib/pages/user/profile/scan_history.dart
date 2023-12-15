@@ -33,6 +33,12 @@ class _ScanHistory extends State<ScanHistory> {
   bool navigatorHidden = false;
   Future<Map<String, LichenCheckEntry>>? _lichenEntryData;
 
+  // Helper function to get the timestamp from results
+  int getTimestamp(LichenCheckEntry entry) {
+    // Replace 'date_uploaded' with the actual field name in your results
+    return entry.results['date_uploaded'].millisecondsSinceEpoch;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -97,6 +103,14 @@ class _ScanHistory extends State<ScanHistory> {
                 } else {
                   Map<String, LichenCheckEntry> lichenCheckData =
                       snapshot.data ?? {};
+
+                  // Convert map entries to a list for sorting
+                  List<MapEntry<String, LichenCheckEntry>> entryList =
+                      lichenCheckData.entries.toList();
+
+                  // Sort the list based on the 'date_uploaded' timestamp
+                  entryList.sort((a, b) =>
+                      getTimestamp(b.value).compareTo(getTimestamp(a.value)));
 
                   // Helper function to count entries based on the filter
                   int countEntries(
@@ -177,13 +191,14 @@ class _ScanHistory extends State<ScanHistory> {
                       ),
 
                       // Sorting the Scan History; 'All' is the default
+                      // Sorting the Scan History; 'All' is the default
                       if (selectedOption == 'All' ||
                           selectedOption == 'Detections' ||
                           selectedOption == 'No Detections')
                         GridView.builder(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
-                          itemCount: lichenCheckData.length,
+                          itemCount: entryList.length,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
@@ -191,10 +206,10 @@ class _ScanHistory extends State<ScanHistory> {
                             mainAxisSpacing: 8.0,
                           ),
                           itemBuilder: (context, index) {
-                            var entryKey = lichenCheckData.keys.toList()[index];
-                            var isDetection = lichenCheckData[entryKey]
-                                    ?.results['detection'] !=
-                                null;
+                            var entryKey = entryList[index].key;
+                            var isDetection =
+                                entryList[index].value.results['detection'] !=
+                                    null;
 
                             if ((selectedOption == 'Detections' &&
                                     isDetection) ||
@@ -208,7 +223,7 @@ class _ScanHistory extends State<ScanHistory> {
                                     MaterialPageRoute(
                                       builder: (context) => ScanHistoryDetails(
                                         lichenCheckEntry:
-                                            lichenCheckData[entryKey],
+                                            entryList[index].value,
                                       ),
                                     ),
                                   );
@@ -217,7 +232,7 @@ class _ScanHistory extends State<ScanHistory> {
                                   padding: const EdgeInsets.all(5.0),
                                   child: CachedNetworkImage(
                                     imageUrl:
-                                        "${lichenCheckData[entryKey]?.results['file_image']}",
+                                        "${entryList[index].value.results['file_image']}",
                                     fit: BoxFit.cover,
                                     placeholder: (context, url) => FadeInImage(
                                       placeholder: AssetImage(

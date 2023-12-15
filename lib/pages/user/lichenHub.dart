@@ -118,7 +118,6 @@ class _LichenHubState extends State<LichenHub> {
     final postsCollectionName = 'LichenHub_posts';
 
     List<Post> loadedPosts = [];
-
     // Get all posts from all users
     var querySnapshot = await usersCollection.get();
     for (var userDoc in querySnapshot.docs) {
@@ -460,7 +459,7 @@ class _LichenHubState extends State<LichenHub> {
     }
   }
 
-Future<void> likePost(Post post) async {
+  Future<void> likePost(Post post) async {
     try {
       User? user = auth.currentUser;
       if (user == null) {
@@ -494,7 +493,6 @@ Future<void> likePost(Post post) async {
       debugPrint('Error liking the post: $e');
     }
   }
-
 
   Future<void> reportPost(
       Post post, List<int> reportFlags, String details) async {
@@ -1125,7 +1123,7 @@ Future<void> likePost(Post post) async {
                                                       animType:
                                                           AnimType.topSlide,
                                                       title:
-                                                          'Thank you for reportiing',
+                                                          'Thank you for reporting',
                                                       desc:
                                                           "We take your safety seriously and are investigating your submission in accordance with our Code of Conduct.",
                                                       descTextStyle: TextStyle(

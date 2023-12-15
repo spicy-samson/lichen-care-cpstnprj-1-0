@@ -198,8 +198,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                         dialogType: DialogType.success,
                                         animType: AnimType.topSlide,
                                         title: 'Successful registration!',
-                                        desc:
-                                            'A verification email has been sent to your email address. Please check your email and click the verification link to activate your account.',
+                                        desc:                                            'A verification email has been sent to your email address. Please check your email and click the verification link to activate your account.',
                                         descTextStyle: const TextStyle(
                                           fontSize: 16.0,
                                         ),

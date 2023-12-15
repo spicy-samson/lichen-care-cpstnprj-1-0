@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-
-class AboutUs extends StatefulWidget{
+class AboutUs extends StatefulWidget {
   _AboutUsState createState() => _AboutUsState();
 }
+
 class _AboutUsState extends State<AboutUs> {
   int _currentIndex = 4;
   bool navigatorHidden = false;
@@ -36,17 +36,17 @@ class _AboutUsState extends State<AboutUs> {
 
       // Body
       body: Listener(
-         onPointerMove: (pointer){
+        onPointerMove: (pointer) {
           // print(pointer.delta);
-          if(pointer.delta.dy == 0){
+          if (pointer.delta.dy == 0) {
             return;
           }
-          if(pointer.delta.dy < 0){
+          if (pointer.delta.dy < 0) {
             // scrolls down
             setState(() {
               navigatorHidden = true;
             });
-          }else{
+          } else {
             // scrolls up
             setState(() {
               navigatorHidden = false;
@@ -92,7 +92,7 @@ class _AboutUsState extends State<AboutUs> {
                       ),
                     ),
                     SizedBox(height: 25),
-      
+
                     // Team members
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -104,7 +104,7 @@ class _AboutUsState extends State<AboutUs> {
                                 height: 162 * scaleFactor,
                                 width: 162 * scaleFactor,
                                 child: Image.asset(
-                                  'assets/imgs/jb_pic.png', // replace with your image path
+                                  'assets/imgs/DickniBe 2x2.png', // replace with your image path
                                 ),
                               ),
                               Expanded(
@@ -134,7 +134,8 @@ class _AboutUsState extends State<AboutUs> {
                                           ),
                                         ),
                                         TextSpan(
-                                          text: "johnbenidickredondo@gmail.com\n",
+                                          text:
+                                              "johnbenidickredondo@gmail.com\n",
                                           style: TextStyle(
                                             fontSize: 18 * scaleFactor,
                                             height: 1.3,
@@ -161,7 +162,7 @@ class _AboutUsState extends State<AboutUs> {
                                 height: 160 * scaleFactor,
                                 width: 160 * scaleFactor,
                                 child: Image.asset(
-                                  'assets/imgs/third.JPG', // replace with your image path
+                                  'assets/imgs/SpicySamson_2X2.jpg', // replace with your image path
                                 ),
                               ),
                               Expanded(
@@ -218,7 +219,7 @@ class _AboutUsState extends State<AboutUs> {
                                 height: 160 * scaleFactor,
                                 width: 160 * scaleFactor,
                                 child: Image.asset(
-                                  'assets/imgs/hannah.jpg', // replace with your image path
+                                  'assets/imgs/Hyannah_2X2.jpg', // replace with your image path
                                 ),
                               ),
                               Expanded(
@@ -272,7 +273,7 @@ class _AboutUsState extends State<AboutUs> {
                       ),
                     ),
                     SizedBox(height: 55 * scaleFactor),
-      
+
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Row(
@@ -384,10 +385,10 @@ class _AboutUsState extends State<AboutUs> {
 
       // Floating action button
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: (navigatorHidden)? null:  _lichenCheckBtn(context),
+      floatingActionButton: (navigatorHidden) ? null : _lichenCheckBtn(context),
 
       // Bottom navigation bar
-      bottomNavigationBar: (navigatorHidden)? null: _bottomNavBar(context),
+      bottomNavigationBar: (navigatorHidden) ? null : _bottomNavBar(context),
     );
   }
 
