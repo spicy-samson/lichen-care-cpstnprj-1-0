@@ -447,6 +447,13 @@ class _LichenHubState extends State<LichenHub> {
         await commentDoc.reference.delete();
       }
 
+      // Delete reports collection
+      final reportsCollection = postDocRef.collection('reports');
+      final reportsQuery = await reportsCollection.get();
+      for (var reportDoc in reportsQuery.docs) {
+        await reportDoc.reference.delete();
+      }
+
       debugPrint('Post and comments deleted successfully');
 
       setState(() {
