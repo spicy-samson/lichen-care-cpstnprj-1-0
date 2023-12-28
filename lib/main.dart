@@ -24,6 +24,8 @@ import 'package:lichen_care/pages/user/lichenpedia/lichenpedia_archives.dart';
 import 'package:lichen_care/pages/user/lichenpedia/lichenpedia_variants.dart';
 import 'package:lichen_care/pages/user/lichenpedia/lichenpedia_reference.dart';
 
+import 'pages/user/profile/user_manual.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -90,6 +92,8 @@ class MyApp extends StatelessWidget {
             return pageRoute(route, TermsAndConditions(onBoot: true,), 0);
           case '/profile/privacy_policy-boot':
             return pageRoute(route, PrivacyPolicy(onBoot: true), 0);
+          case '/profile/user_manual':
+            return pageRoute(route, UserManual(), 0);
           case '/stream_example':
             return pageRoute(route, LichenCareNotifications(), 0);
         }

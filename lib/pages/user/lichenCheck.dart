@@ -203,7 +203,6 @@ class _LichenCheckState extends State<LichenCheck> {
     }
   }
 
-  // Function to handle permission before picking image
   Future<void> handlePermissionBeforePick(ImageSource source) async {
     // Camera permission
     debugPrint("Hello handle permssion");
@@ -246,7 +245,7 @@ class _LichenCheckState extends State<LichenCheck> {
     double scaleFactor = h / 1080;
 
     return Stack(
-      children: [
+      children: [ 
         Scaffold(
           resizeToAvoidBottomInset: false,
           backgroundColor: Color(0xFFFFF4E9),
@@ -1772,19 +1771,19 @@ class _LichenCheckState extends State<LichenCheck> {
     int threshold = 75;
     List<int> imageSize = [300, 400];
     var image = img.decodeImage(file.readAsBytesSync());
-    // resize image add adjustmment filter for better prediction
+    // Resize image add adjustmment filter for better prediction
     var reduced =
         img.adjustColor(image!, saturation: 2.0, contrast: 5.0, amount: 1.0);
     reduced = img.copyResize(reduced,
         width: imageSize[0],
         height: imageSize[1],
-        interpolation: img.Interpolation.cubic); // resize
+        interpolation: img.Interpolation.cubic); // Resize
 
-    // exit function if classifier object is not initialized
+    // Exit function if classifier object is not initialized
     classifier!.putImage(reduced);
     // 5707.89ms
     List<Recognition> recognitions = await classifier!.predict();
-    // dispose image
+    // Dispose image
     classifier!.disposeImage();
     if (recognitions.isNotEmpty) {
       double score = recognitions[0].score;
@@ -1801,7 +1800,7 @@ class _LichenCheckState extends State<LichenCheck> {
             (recognitions[i].location!.bottom * (image.height / reduced.height))
                 .round()
           ];
-          // get rid of out of bounds vertex locations
+          // Get rid of out of bounds vertex locations
           for (int j = 0; j < location.length; j++) {
             location[j] = location[j] < 0 ? 0 : location[j];
             location[j] = (j + 1) % 2 != 0 && location[j] > image.width
@@ -1831,7 +1830,6 @@ class _LichenCheckState extends State<LichenCheck> {
           patientInformation.detection = recognitions[0].label;
           patientInformation.detectionScore =
               value.toStringAsFixed(2).substring(0, 5);
-          // _predictedLabel = recognitions[0].label;
         }
       });
     } else {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -89,6 +90,14 @@ class _ProfileState extends State<Profile> {
                 child: buildRow('Privacy Policy',
                     'assets/svgs/profileSection/privacy policy_icon.svg', () {
                   Navigator.of(context).pushNamed('/profile/privacy_policy');
+                }),
+              ),
+              buildCustomDivider(2, Colors.grey),
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: buildRow(
+                    'Help', 'assets/svgs/profileSection/help_icon.svg', () {
+                  Navigator.of(context).pushNamed('/profile/user_manual');
                 }),
               ),
               buildCustomDivider(2, Colors.grey),

@@ -56,7 +56,6 @@ class Post {
     required this.comments,
   });
 }
-
 class Comment {
   String id;
   String sender;
@@ -102,6 +101,7 @@ class _LichenHubState extends State<LichenHub> {
     "underline": true,
   };
   List<Post> posts = [];
+  
   // UI booleans
   bool postLoaded = false;
   bool isLoading = false;
@@ -276,7 +276,6 @@ class _LichenHubState extends State<LichenHub> {
           posts = [newPost, ...posts];
         });
 
-        //await addCommentToPost(newPost, 'Commenter Name', 'This is a comment.');
       } else {
         debugPrint('User document does not exist in Firestore');
       }
