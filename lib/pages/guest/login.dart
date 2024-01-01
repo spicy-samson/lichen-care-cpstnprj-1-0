@@ -54,12 +54,12 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> _saveEmail() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('rememberedEmail', _email.text);
-    if(rememberMe){
+    if (rememberMe) {
       _keepLogin();
     }
   }
 
-  Future<void> _keepLogin() async{
+  Future<void> _keepLogin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('loginEmail', _email.text);
   }
@@ -142,7 +142,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     SizedBox(height: 30.0),
-                    Container( 
+                    Container(
                       child: ElevatedButton(
                         onPressed: _isLoading
                             ? null
@@ -181,7 +181,7 @@ class _LoginPageState extends State<LoginPage> {
                                           FirebaseAuth.instance.currentUser;
                                       if (user != null) {
                                         await checkDisclaimerAndNavigate(user);
-                                        
+
                                         await FirebaseFirestore.instance
                                             .collection('users')
                                             .doc(user.uid)
@@ -193,7 +193,6 @@ class _LoginPageState extends State<LoginPage> {
                                       print(
                                           "Error updating Firestore data: $e");
                                     }
-                                  
                                   } else if (userCredential.user != null &&
                                       !userCredential.user!.emailVerified) {
                                     // User tries to log in but email is not verified
@@ -215,8 +214,8 @@ class _LoginPageState extends State<LoginPage> {
                                   }
                                   _showSnackBar(errorMessage);
                                 } finally {
-                                  if(mounted){
-                                     setState(() {
+                                  if (mounted) {
+                                    setState(() {
                                       _isLoading = false; // Reset loading state
                                     });
                                   }
@@ -224,7 +223,8 @@ class _LoginPageState extends State<LoginPage> {
                               },
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all<EdgeInsets>(
-                            const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                            const EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 10),
                           ),
                           backgroundColor: MaterialStateProperty.all<Color>(
                               primaryforegroundColor),
